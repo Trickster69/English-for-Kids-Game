@@ -4,10 +4,108 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./favicon.png" type="image/png">
     <title>English kids</title>
   </head>
   <body>
-    <h1>Hello world</h1>
-    <img src="./image.jpg" alt="" />
+    <header>
+     <div class="header__container">
+
+      <div class="header__item">
+        <input type="checkbox" id="menu_checkbox">
+        <label for="menu_checkbox" class="burger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </label>
+      </div>
+
+      <div class="header__game-mode">
+        <div class="header__train-mode">Train</div>
+        <label class="switch">
+          <input type="checkbox" id="switch_checkbox">
+          <span class="slider"></span>
+        </label>
+        <div class="header__play-mode disabled">Play</div>
+      </div>
+     </div>
+    </header>
+
+    <div class="categories">
+      <!-- <div class="categories__title">Choose category for train</div> -->
+
+      <div class="categories__menu">
+
+        <div class="card animals">
+          <div class="card__image">
+            <img src="./category/animals2.png" alt="">
+          </div>
+          <div class="card__category">Animals</div>
+        </div>
+
+        <div class="card clothing">
+          <div class="card__image">
+            <img src="./category/clothing.png" alt="">
+          </div>
+          <div class="card__category">Clothing</div>
+        </div>
+
+        <div class="card gastronomy">
+          <div class="card__image">
+            <img src="./category/gastronomy.png" alt="">
+          </div>
+          <div class="card__category">Gastronomy</div>
+        </div>
+
+        <div class="card music">
+          <div class="card__image">
+            <img src="./category/music.png" alt="">
+          </div>
+          <div class="card__category">Music</div>
+        </div>
+
+        <div class="card sport">
+          <div class="card__image">
+            <img src="./category/sport2.png" alt="">
+          </div>
+          <div class="card__category">Sport</div>
+        </div>
+
+        <div class="card toys">
+          <div class="card__image">
+            <img src="./category/toys.png" alt="">
+          </div>
+          <div class="card__category">Toys</div>
+        </div>
+
+        <div class="card travel">
+          <div class="card__image">
+            <img src="./category/travel.png" alt="">
+          </div>
+          <div class="card__category">Travel</div>
+        </div>
+
+        <div class="card animals2">
+          <div class="card__image">
+            <img src="./category/animal2.png" alt="">
+          </div>
+          <div class="card__category">Animal II</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <ul>
+        <li>Main Page</li>
+        <li>Animals</li>
+        <li>Clothing</li>
+        <li>Gastronomy</li>
+        <li>Music</li>
+        <li>Sport</li>
+        <li>Toys</li>
+        <li>Travel</li>
+        <li>Body parts</li>
+      </ul>
+    </nav>
   </body>
 </html>
