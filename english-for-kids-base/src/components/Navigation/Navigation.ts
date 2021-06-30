@@ -1,5 +1,6 @@
 import { AudioController } from '../AudioController';
 import { BaseComponent } from '../BaseComponent';
+import { Overlay } from '../Overlay/Overlay';
 import './Navigation.scss';
 
 export class Navigation extends BaseComponent {
@@ -20,7 +21,6 @@ export class Navigation extends BaseComponent {
         <li>travel</li>
       </ul>
     `;
-
     this.menuItems = this.element.querySelectorAll('li');
     this.selectNavigationItem();
 

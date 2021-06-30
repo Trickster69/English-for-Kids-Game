@@ -22,6 +22,7 @@ export class GameField extends BaseComponent {
     this.startBtn.textContent = 'Start';
     this.startBtnWrap.appendChild(this.startBtn);
     this.checkbox = document.querySelector('#switch_checkbox');
+    this.changeStartBtnText();
   }
 
   removeGameField():void {
@@ -31,6 +32,12 @@ export class GameField extends BaseComponent {
   clearGameField():void {
     this.wordsCards = [];
     this.element.innerHTML = '';
+  }
+
+  changeStartBtnText():void {
+    this.startBtnWrap.addEventListener('click', () => {
+      this.startBtn.textContent = 'Repeat';
+    });
   }
 
   renderGameCards(category:any):void {
@@ -49,7 +56,6 @@ export class GameField extends BaseComponent {
       if (store.playMode === 'false') {
         card.gameDiscription.classList.remove('discription_hidden');
         card.element.classList.remove('play_card');
-        // card.element.addEventListener('click', () => console.log("играем"));
       } else {
         card.gameDiscription.classList.add('discription_hidden');
         card.element.classList.add('play_card');

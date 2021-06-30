@@ -5,7 +5,6 @@ import { GameField } from '../GameField/GameField';
 import { Header } from '../Header/Header';
 import { Navigation } from '../Navigation/Navigation';
 import store from '../store';
-import cards1 from '../../cards';
 import { Overlay } from '../Overlay/Overlay';
 import { AudioController } from '../AudioController';
 
@@ -21,8 +20,6 @@ export class Game extends BaseComponent {
   private readonly overlay: Overlay;
 
   checkbox: HTMLInputElement | null;
-
-  // header: Header;
 
   constructor() {
     super();
@@ -102,6 +99,12 @@ export class Game extends BaseComponent {
     this.header.burger.addEventListener('click', () => {
       this.navigation.element.classList.toggle('show');
       this.overlay.element.classList.toggle('overlay_active');
+    });
+
+    this.navigation.menuItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        this.overlay.element.classList.remove('overlay_active');
+      });
     });
 
     this.overlay.element.addEventListener('click', () => {
