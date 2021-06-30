@@ -33,23 +33,10 @@ export class Game extends BaseComponent {
     this.checkbox = document.querySelector('#switch_checkbox');
     this.overlay = new Overlay();
     document.body.append(this.overlay.element);
+    this.toggleMenu();
   }
 
   newGame(images: string[]): void {
-    this.element.appendChild(this.header.element);
-    this.element.appendChild(this.navigation.element);
-
-    this.header.burger.addEventListener('click', () => {
-      this.navigation.element.classList.toggle('show');
-      this.overlay.element.classList.toggle('overlay_active');
-      console.log(this.overlay.element);
-    });
-
-    this.overlay.element.addEventListener('click', () => {
-      this.navigation.element.classList.remove('show');
-      this.overlay.element.classList.remove('overlay_active');
-    });
-
     this.categoryFields.clearCategoryField();
     const cards = images.map((img) => new CategoryCard(`${img}`));
 
@@ -74,18 +61,45 @@ export class Game extends BaseComponent {
     cards.forEach((card) => {
       card.element.addEventListener('click', () => {
         const category = card.element.classList[1];
+        store.category = category;
         this.categoryFields.removeCategoryField();
         this.gameField.clearGameField();
         this.gameField.renderGameCards(category);
         this.element.appendChild(this.gameField.element);
 
-        // this.header.checkbox?.addEventListener('click', () => {
-        //   console.log('изменили');//не работает.
-        //   card.element.classList.add('play_card');
-        // });
+        this.navigation.menuItems.forEach((item) => item.classList.remove('active_li'));
+        this.navigation.menuItems.forEach((key) => {
+          if (key.textContent === category) {
+            key.classList.add('active_li');
+          }
+        });
       });
     });
+    this.switchGameMode(cards);
+  }
 
+  switchGameMode(cards: CategoryCard[]):void {
     this.categoryFields.addCategoryCards(cards);
+    this.header.checkbox?.addEventListener('click', () => {
+      this.gameField.wordsCards.forEach((card) => {
+        card.playMode();
+        card.trainMode();
+      });
+    });
+  }
+
+  toggleMenu():void {
+    this.element.appendChild(this.header.element);
+    this.element.appendChild(this.navigation.element);
+
+    this.header.burger.addEventListener('click', () => {
+      this.navigation.element.classList.toggle('show');
+      this.overlay.element.classList.toggle('overlay_active');
+    });
+
+    this.overlay.element.addEventListener('click', () => {
+      this.navigation.element.classList.remove('show');
+      this.overlay.element.classList.remove('overlay_active');
+    });
   }
 }

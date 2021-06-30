@@ -46,6 +46,13 @@ export class GameField extends BaseComponent {
     }
 
     this.wordsCards.forEach((card) => {
+      if (store.playMode === 'false') {
+        card.gameDiscription.classList.remove('discription_hidden');
+        card.element.classList.remove('play_card');
+      } else {
+        card.gameDiscription.classList.add('discription_hidden');
+        card.element.classList.add('play_card');
+      }
       this.element.appendChild(card.element);
     });
 

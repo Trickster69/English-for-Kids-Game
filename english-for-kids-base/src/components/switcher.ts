@@ -28,7 +28,7 @@ export class Switcher {
         this.playCards.forEach((card) => card.classList.add('play_card'));
         this.headerPlayMode?.classList.remove('disabled');
         this.headerTrainMode?.classList.add('disabled');
-        console.log(this.playCards);
+        // console.log(this.playCards);
         console.log('Актив');
       } else {
         this.category?.forEach((category) => {
