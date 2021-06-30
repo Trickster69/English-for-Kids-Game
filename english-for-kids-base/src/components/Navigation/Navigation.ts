@@ -1,10 +1,13 @@
 import { AudioController } from '../AudioController';
 import { BaseComponent } from '../BaseComponent';
+import { Overlay } from '../Overlay/Overlay';
 import store from '../store';
 import './Navigation.scss';
 
 export class Navigation extends BaseComponent {
   menuItems : NodeListOf<HTMLLIElement>;
+
+  // private overlay: Overlay;
 
   constructor() {
     super('nav', ['menu']);
@@ -21,16 +24,28 @@ export class Navigation extends BaseComponent {
         <li>travel</li>
       </ul>
     `;
+    // this.overlay = new Overlay();
+    // document.body.append(this.overlay.element);
 
     this.menuItems = this.element.querySelectorAll('li');
     this.menuItems.forEach((item) => {
       item.addEventListener('click', () => {
         this.menuItems.forEach((key) => {
-          key.style.color = 'white';
+          key.classList.remove('active_li');
         });
-        item.style.color = 'red';
+        item.classList.add('active_li');
       });
     });
+
     this.menuItems.forEach((item) => item.addEventListener('mouseenter', () => new AudioController().mouseEnterCar()));
+
+    this.menuItems.forEach((item) => item.addEventListener('click', () => new AudioController().clickTOCard()));
+
+    // this.overlay.element.addEventListener('click', () => {
+    //   this.element.classList.remove('show');
+    //   console.log('show');
+    //   console.log(this.overlay.element);
+    //   this.overlay.element.classList.remove('overlay_active');
+    // });
   }
 }
