@@ -1,0 +1,81 @@
+.card {
+  width: 260px;
+  height: 287px;
+  align-items: center;
+  // background-color: #c0d5e661;
+  border-radius: 18px 18px 0 0;
+  transition: 0.4s;
+}
+.card:hover {
+  cursor: pointer;
+  // box-shadow: 0 0.5rem 0.7rem rgb(0 0 0 / 50%);
+  // background-color: #90c2ea8a;
+}
+.card:hover .card__category {
+  color: #f8e9ca;
+  color: #000000;
+  // background-color: #754c8fde;;
+}
+
+
+.card:hover .card__image {
+  transform: scale(1.2);
+}
+
+.card__image {
+  width: 240px;
+  height: 283px;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  transition: 0.6s;
+  justify-content: center;
+}
+
+.card__image img {
+  width: 100%;
+}
+
+
+.animals img, .animals2 img, .sport img {
+  position: relative;
+  top: -15px;
+}
+
+.travel img {
+  position: relative;
+  top: -60px;
+  width: 140%;
+  height: 140%;
+}
+
+.sport img {
+  width: 120%;
+  height: 120%;
+}
+.gastronomy img {
+  width: 110%;
+  height: 106%;
+}
+
+.card__category {
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'WatercolorDemo';
+
+  // color: #26201a;
+  color: #3a2c1fc9;
+  font-size: 12px;
+  letter-spacing: 6px;
+  transition: 0.2s;
+  // background-color: #754c8f70;
+  border-radius: 0 0 18px 18px;
+}
+
+.play_mode {
+  // background-color: #16aa7a96;
+}
+
+.play_mode:hover .card__category{
+  // background-color: #01a77296;
+}

@@ -1,0 +1,115 @@
+.game-card {
+  width: 260px;
+  height: 327px;
+  align-items: center;
+  // background-color: #34337e52;
+  // background-color: #754c8f57;
+  border-radius: 18px 18px 18px 18px;
+  // border: 2px solid #99c1da;
+  transition: 0.4s;
+  position: relative;
+  cursor: pointer;
+  // transform-style: preserve-3d;
+  clip-path: polygon(3% 0, 7% 1%, 11% 0%, 16% 2%, 20% 0, 23% 2%, 28% 2%, 32% 1%, 35% 1%, 39% 3%, 41% 1%, 45% 0%, 47% 2%, 50% 2%, 53% 0, 58% 2%, 60% 2%, 63% 1%, 65% 0%, 67% 2%, 69% 2%, 73% 1%, 76% 1%, 79% 0, 82% 1%, 85% 0, 87% 1%, 89% 0, 92% 1%, 96% 0, 98% 3%, 99% 3%, 99% 6%, 100% 11%, 98% 15%, 100% 21%, 99% 28%, 100% 32%, 99% 35%, 99% 40%, 100% 43%, 99% 48%, 100% 53%, 100% 57%, 99% 60%, 100% 64%, 100% 68%, 99% 72%, 100% 75%, 100% 79%, 99% 83%, 100% 86%, 100% 90%, 99% 94%, 99% 98%, 95% 99%, 92% 99%, 89% 100%, 86% 99%, 83% 100%, 77% 99%, 72% 100%, 66% 98%, 62% 100%, 59% 99%, 54% 99%, 49% 100%, 46% 98%, 43% 100%, 40% 98%, 38% 100%, 35% 99%, 31% 100%, 28% 99%, 25% 99%, 22% 100%, 19% 99%, 16% 100%, 13% 99%, 10% 99%, 7% 100%, 4% 99%, 2% 97%, 1% 97%, 0% 94%, 1% 89%, 0% 84%, 1% 81%, 0 76%, 0 71%, 1% 66%, 0% 64%, 0% 61%, 0% 59%, 1% 54%, 0% 49%, 1% 45%, 0% 40%, 1% 37%, 0% 34%, 1% 29%, 0% 23%, 2% 20%, 1% 17%, 1% 13%, 0 10%, 1% 6%, 1% 3%);
+}
+
+.play_card {
+  background-color: #00f5a545;
+  background-color: #64b78bb5;
+}
+
+.game-card__img {
+  width: 260px;
+  height: 287px;
+}
+.game-card__back {
+  // display: none;
+  transform: perspective(600px) rotateY(180deg);
+}
+.game-card__front {
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.game-card__front, .game-card__back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition: transform .6s ease-in-out;
+  background-color: #754c8f57;
+}
+
+.game-card:hover > .game-card__front{
+  transform: perspective(600px) rotateY(-180deg);
+}
+.game-card:hover > .game-card__back{
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.game-card__img img{
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+}
+.Duck img {
+  width: 110%;
+}
+.Elephant img {
+  top: 44%;
+  width: 90%;
+}
+.Fox img {
+  width: 81%;
+  top: 42%;
+}
+.Giraffe img {
+  top: 41%;
+}
+.Lion img {
+  top: 38%;
+}
+.Panda img {
+  width: 115%;
+}
+
+.game-card__discription {
+  background-color: #ffffff;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  clip-path: polygon(3% 0, 7% 1%, 11% 0%, 16% 2%, 20% 0, 23% 2%, 28% 2%, 32% 1%, 35% 1%, 39% 3%, 41% 1%, 45% 0%, 47% 2%, 50% 2%, 53% 0, 58% 2%, 60% 2%, 63% 1%, 65% 0%, 67% 2%, 69% 2%, 73% 1%, 76% 1%, 79% 0, 82% 1%, 85% 0, 87% 1%, 89% 0, 92% 1%, 96% 0, 98% 3%, 99% 3%, 99% 6%, 100% 11%, 98% 15%, 100% 21%, 99% 28%, 100% 32%, 99% 35%, 99% 40%, 100% 43%, 99% 48%, 100% 53%, 100% 57%, 99% 60%, 100% 64%, 100% 68%, 99% 72%, 100% 75%, 100% 79%, 99% 83%, 100% 86%, 100% 90%, 99% 94%, 99% 98%, 95% 99%, 92% 99%, 89% 100%, 86% 99%, 83% 100%, 77% 99%, 72% 100%, 66% 98%, 62% 100%, 59% 99%, 54% 99%, 49% 100%, 46% 98%, 43% 100%, 40% 98%, 38% 100%, 35% 99%, 31% 100%, 28% 99%, 25% 99%, 22% 100%, 19% 99%, 16% 100%, 13% 99%, 10% 99%, 7% 100%, 4% 99%, 2% 97%, 1% 97%, 0% 94%, 1% 89%, 0% 84%, 1% 81%, 0 76%, 0 71%, 1% 66%, 0% 64%, 0% 61%, 0% 59%, 1% 54%, 0% 49%, 1% 45%, 0% 40%, 1% 37%, 0% 34%, 1% 29%, 0% 23%, 2% 20%, 1% 17%, 1% 13%, 0 10%, 1% 6%, 1% 3%);
+  height: 40px;
+  bottom: 8px;
+}
+
+.game-card__discription-name {
+  text-align: left;
+  font-family: 'Countryhouse';
+  font-size: 35px;
+  position: absolute;
+  top: -6px;
+  left: 19px;
+  color: #5a9ae4;
+
+}
+
+.game-card__discription-btn-back {
+  position: absolute;
+  left: 78%;
+  transition: 0.2s ease-in-out;
+  transform-origin: 50% 46%;
+}
+
+.game-card__discription-btn-back img {
+  width: 40px;
+  height: 40px;
+
+}
+
+.game-card__discription-btn-back:hover {
+  transform: rotate(180deg);
+}

@@ -1,4 +1,4 @@
-export class Game {
+export class Switcher {
   checkbox: HTMLInputElement | null;
 
   category: NodeListOf<Element>;
@@ -7,9 +7,12 @@ export class Game {
 
   headerTrainMode: HTMLInputElement | null;
 
+  playCards: NodeListOf<Element>;
+
   constructor() {
     this.checkbox = document.querySelector('#switch_checkbox');
     this.category = document.querySelectorAll('.card__category');
+    this.playCards = document.querySelectorAll('.game-card');
     this.headerPlayMode = document.querySelector('.header__play-mode');
     this.headerTrainMode = document.querySelector('.header__train-mode');
     this.switchMode();
@@ -17,12 +20,15 @@ export class Game {
 
   switchMode() {
     this.checkbox?.addEventListener('change', () => {
+      new Audio('./audio/switcher.wav').play();
       if (this.checkbox?.checked) {
         this.category?.forEach((category) => {
           category.classList.add('play_mode');
         });
+        this.playCards.forEach((card) => card.classList.add('play_card'));
         this.headerPlayMode?.classList.remove('disabled');
         this.headerTrainMode?.classList.add('disabled');
+        console.log(this.playCards);
         console.log('Актив');
       } else {
         this.category?.forEach((category) => {

@@ -1,17 +1,18 @@
 import './styles.scss';
+import { Switcher } from './components/switcher';
+import { App } from './app';
+
+window.onload = () => {
+  const app = new App(document.body);
+};
+
 // import { Click } from './clicl';
-import { Game } from './components/game';
 
 const burger = document.querySelector('label');
 burger?.addEventListener('click', () => {
   console.log('show');
+  // new Audio('https://wooordhunt.ru/data/sound/sow/us/welcome.mp3').play();
+
   document.querySelector('.menu')?.classList.toggle('show');
 });
-// const game = new Game();
-// el?.addEventListener('change', () => {
-//   console.log((el as any).prop('checked', true));
-// });
-
-// function gameFieldMode() {
-
-// }
+// const game = new Switcher();
