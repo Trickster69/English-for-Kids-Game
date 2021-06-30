@@ -7,6 +7,7 @@ import { Navigation } from '../Navigation/Navigation';
 import store from '../store';
 import cards1 from '../../cards';
 import { Overlay } from '../Overlay/Overlay';
+import { AudioController } from '../AudioController';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -104,6 +105,7 @@ export class Game extends BaseComponent {
     });
 
     this.overlay.element.addEventListener('click', () => {
+      new AudioController().clickMenu();
       this.navigation.element.classList.remove('show');
       this.overlay.element.classList.remove('overlay_active');
     });

@@ -35,12 +35,12 @@ export class Header extends BaseComponent {
     this.burger.addEventListener('click', () => new AudioController().clickMenu());
     this.checkbox = this.element.querySelector('#switch_checkbox');
     this.checkbox?.addEventListener('change', () => {
+      new AudioController().clickSwitcher();
       if (this.checkbox?.checked) {
         store.playMode = 'true';
       } else {
         store.playMode = 'false';
       }
-      console.log(store.playMode);
     });
   }
 }

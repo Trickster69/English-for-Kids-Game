@@ -1,3 +1,4 @@
+import './Game.Card.scss';
 import { AudioController } from '../AudioController';
 import { BaseComponent } from '../BaseComponent';
 import store from '../store';
