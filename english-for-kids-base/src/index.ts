@@ -1,5 +1,4 @@
 import './styles.scss';
-import { Switcher } from './components/switcher';
 import { App } from './app';
 
 window.onload = () => {

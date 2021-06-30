@@ -1,7 +1,6 @@
 import { CategoryField } from './components/CategoryField/CategoryField';
 import cards from './cards';
 import { Game } from './components/Game/game';
-import { Switcher } from './components/switcher';
 import { Header } from './components/Header/Header';
 
 export class App {
