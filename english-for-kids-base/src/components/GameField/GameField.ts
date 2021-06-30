@@ -49,6 +49,7 @@ export class GameField extends BaseComponent {
       if (store.playMode === 'false') {
         card.gameDiscription.classList.remove('discription_hidden');
         card.element.classList.remove('play_card');
+        // card.element.addEventListener('click', () => console.log("играем"));
       } else {
         card.gameDiscription.classList.add('discription_hidden');
         card.element.classList.add('play_card');

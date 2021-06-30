@@ -16,6 +16,6 @@ export class App {
     // this.categoryField = new CategoryField();
     // this.rootElement.appendChild(this.header.element);
     this.rootElement.appendChild(game.element);
-    const switcher = new Switcher();
+    // const switcher = new Switcher();
   }
 }

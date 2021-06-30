@@ -43,7 +43,6 @@ export class Game extends BaseComponent {
     this.navigation.menuItems.forEach((item) => {
       item.addEventListener('click', () => {
         if (item.textContent === 'main page') {
-          const images1: any[] = cards1[0];
           this.categoryFields.removeCategoryField();
           this.gameField.removeGameField();
           this.categoryFields.addCategoryCards(cards);
@@ -75,15 +74,17 @@ export class Game extends BaseComponent {
         });
       });
     });
-    this.switchGameMode(cards);
+    this.categoryFields.addCategoryCards(cards);
+    this.switchGameMode();
   }
 
-  switchGameMode(cards: CategoryCard[]):void {
-    this.categoryFields.addCategoryCards(cards);
+  switchGameMode():void {
     this.header.checkbox?.addEventListener('click', () => {
       if (this.header.checkbox?.checked) {
+        store.playMode = 'true';
         this.gameField.startBtnWrap.classList.add('start_btn__active');
       } else {
+        store.playMode = 'false';
         this.gameField.startBtnWrap.classList.remove('start_btn__active');
       }
       this.gameField.wordsCards.forEach((card) => {

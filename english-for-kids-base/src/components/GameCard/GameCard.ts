@@ -55,27 +55,30 @@ export class GameCard extends BaseComponent {
       this.element.querySelector('.game-card__back')?.classList.remove('flipped-back');
     });
 
-    if (store.playMode === 'false') {
-      this.element.addEventListener('click', () => this.playWord(this.element));
-    }
+    this.element.addEventListener('click', () => {
+      if (store.playMode === 'false') {
+        this.playWord(this.element);
+      }
+    });
   }
 
-  playWord(element:HTMLElement) {
+  playWord(element:HTMLElement):void {
     const audio = element.classList[1].slice(0, 1).toLowerCase() + this.element.classList[1].slice(1);
     new Audio(`https://wooordhunt.ru/data/sound/sow/us/${audio}.mp3`).play();
   }
 
-  playMode() {
-    if (store.playMode === 'false') {
+  playMode():void {
+    if (store.playMode === 'true') {
       this.gameDiscription.classList.add('discription_hidden');
       this.element.classList.add('play_card');
     }
   }
 
-  trainMode() {
-    if (store.playMode === 'true') {
+  trainMode():void {
+    if (store.playMode === 'false') {
       this.gameDiscription.classList.remove('discription_hidden');
       this.element.classList.remove('play_card');
+      // this.playWord(this.element);
     }
   }
 }

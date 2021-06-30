@@ -40,6 +40,7 @@ export class Header extends BaseComponent {
       } else {
         store.playMode = 'false';
       }
+      console.log(store.playMode);
     });
   }
 }
