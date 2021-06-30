@@ -56,8 +56,6 @@ export class GameField extends BaseComponent {
       this.element.appendChild(card.element);
     });
 
-    if (store.playMode === 'true') {
-      this.element.appendChild(this.startBtnWrap);
-    }
+    this.element.appendChild(this.startBtnWrap);
   }
 }

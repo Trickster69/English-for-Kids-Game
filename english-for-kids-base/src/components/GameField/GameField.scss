@@ -15,7 +15,7 @@
 
 
 .start_btn {
-  display: block;
+  display: none;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -23,6 +23,10 @@
 }
 .start:hover {
   background-color: #5aad31;
+}
+
+.start_btn__active {
+  display: block;
 }
 
 .start {

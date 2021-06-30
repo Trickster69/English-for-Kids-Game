@@ -81,6 +81,11 @@ export class Game extends BaseComponent {
   switchGameMode(cards: CategoryCard[]):void {
     this.categoryFields.addCategoryCards(cards);
     this.header.checkbox?.addEventListener('click', () => {
+      if (this.header.checkbox?.checked) {
+        this.gameField.startBtnWrap.classList.add('start_btn__active');
+      } else {
+        this.gameField.startBtnWrap.classList.remove('start_btn__active');
+      }
       this.gameField.wordsCards.forEach((card) => {
         card.playMode();
         card.trainMode();
