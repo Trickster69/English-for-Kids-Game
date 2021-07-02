@@ -20,6 +20,7 @@ export class AudioController {
   }
 
   clickSwitcher() {
+    this.headerSwitcher.currentTime = 0;
     this.headerSwitcher.play();
   }
 

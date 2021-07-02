@@ -212,26 +212,26 @@ label div:last-child
 
 
 /*    CATEGORIES    */
-.categories {
-  // display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  margin: 50px;
+// .categories {
+//   // display: none;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translateX(-50%) translateY(-50%);
+//   margin: 50px;
 
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-gap: 65px;
-  justify-content: center;
-}
+//   display: grid;
+//   grid-template-columns: repeat(4, auto);
+//   grid-gap: 65px;
+//   justify-content: center;
+// }
 
-.categories__title {
-  font-family: 'Countryhouse';
-  font-size: 62px;
-  // text-align: center;
-  color: #8b7676;
-}
+// .categories__title {
+//   font-family: 'Countryhouse';
+//   font-size: 62px;
+//   // text-align: center;
+//   color: #8b7676;
+// }
 
 // .categories__menu {
 //   display: grid;

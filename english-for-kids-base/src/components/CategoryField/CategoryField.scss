@@ -1,15 +1,32 @@
-/*    CATEGORIES    */
 .categories {
+  // display: none;
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translateX(-50%) translateY(-50%);
+  // margin: 50px;
+
+  // display: grid;
+  // grid-template-columns: repeat(4, auto);
+  // grid-gap: 65px;
+  // justify-content: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  margin: 50px;
+  // margin: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+  row-gap: 65px;
+  justify-content: center;
 }
 
 .categories__title {
   font-family: 'Countryhouse';
   font-size: 62px;
+  // text-align: center;
   color: #8b7676;
 }
 

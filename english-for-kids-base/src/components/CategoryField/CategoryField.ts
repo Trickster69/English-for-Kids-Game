@@ -3,7 +3,7 @@ import { CategoryCard } from '../CategoryCard/CategoryCard';
 import './CategoryField.scss';
 
 export class CategoryField extends BaseComponent {
-  private categoryCards: CategoryCard[] = [];
+  categoryCards: CategoryCard[] = [];
 
   constructor() {
     super('div', ['categories']);
