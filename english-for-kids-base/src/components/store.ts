@@ -5,4 +5,5 @@ export default {
   word: 'cat' as string | undefined,
   btnStatus: 'Start' as string,
   trueWords: [] as string[],
+  wrongAnswers: 0 as number,
 };

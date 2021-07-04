@@ -1,0 +1,17 @@
+.success-point {
+  width: 50px;
+  animation: dance-point 1s linear infinite 500ms;
+
+}
+
+@keyframes dance-point {
+  0%, 100% {
+      transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-6deg);
+  }
+  75% {
+      transform: rotate(6deg);
+  }
+}

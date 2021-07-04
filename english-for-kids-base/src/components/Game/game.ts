@@ -8,7 +8,8 @@ import store from '../store';
 import { Overlay } from '../Overlay/Overlay';
 import { AudioController } from '../AudioController';
 import cardsObj from '../../cards';
-import { SuccessPoint } from '../SuccessPoin/SuccessPoin';
+import { SuccessPoint } from '../Point/Point';
+import { LoosePage } from '../WinnerPage/LoosePage';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -31,6 +32,7 @@ export class Game extends BaseComponent {
 
   constructor() {
     super();
+    this.element.style.height = '0';
     this.gameField = new GameField();
     this.categoryFields = new CategoryField();
     this.element.appendChild(this.categoryFields.element);
@@ -120,19 +122,21 @@ export class Game extends BaseComponent {
         const outer = card.element.outerHTML;
         card.element.outerHTML = outer;
         store.trueWords?.push(clickWord);
-        // const point = new SuccessPoint();
-        this.gameField.score.append(new SuccessPoint().addSuccessPoin());
+        this.gameField.score.append(new SuccessPoint().addPoint('success'));
         console.log(store.trueWords);
         this.audioController.successPlay();
         if (store.trueWords.length < 8) {
           setTimeout(() => {
             this.playAudio(store.storeWords as string[]);
           }, 500);
+        } else {
+          this.showGameResult();
         }
       } else {
         console.log('мимо');
+        ++store.wrongAnswers;
         this.audioController.failPlay();
-        this.gameField.score.append(new SuccessPoint().addFailPoin());
+        this.gameField.score.append(new SuccessPoint().addPoint('fail'));
       }
     }));
   }
@@ -159,6 +163,14 @@ export class Game extends BaseComponent {
         card.trainMode();
       });
     });
+  }
+
+  showGameResult():void {
+    if (store.wrongAnswers > 0) {
+      document.body.append(new LoosePage().element);
+    } else {
+      console.log('Verno');
+    }
   }
 
   toggleMenu():void {

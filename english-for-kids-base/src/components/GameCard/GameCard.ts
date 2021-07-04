@@ -6,20 +6,22 @@ import store from '../store';
 export class GameCard extends BaseComponent {
   gameDiscription: HTMLDivElement;
 
+  front: HTMLDivElement;
+
   constructor(image:string, rusWord:string, category:string) {
     super('div', ['game-card', image]);
-    const front = document.createElement('div');
-    front.classList.add('game-card__front');
-    this.element.appendChild(front);
+    this.front = document.createElement('div');
+    this.front.classList.add('game-card__front');
+    this.element.appendChild(this.front);
     const imageContainer = document.createElement('div');
     imageContainer.classList.add('game-card__img');
-    front.appendChild(imageContainer);
+    this.front.appendChild(imageContainer);
     const imageCard = document.createElement('img');
     imageCard.src = `./cards/${category}/${image}.png`;
     imageContainer.appendChild(imageCard);
     this.gameDiscription = document.createElement('div');
     this.gameDiscription.classList.add('game-card__discription');
-    front.appendChild(this.gameDiscription);
+    this.front.appendChild(this.gameDiscription);
     const discriptionName = document.createElement('div');
     discriptionName.classList.add('game-card__discription-name');
     discriptionName.textContent = image;
@@ -56,7 +58,7 @@ export class GameCard extends BaseComponent {
       this.element.querySelector('.game-card__back')?.classList.remove('flipped-back');
     });
 
-    this.element.addEventListener('click', () => {
+    this.front.addEventListener('click', () => {
       if (store.playMode === 'false') {
         this.playWord(this.element);
       }

@@ -37,12 +37,9 @@
   transition: transform .6s ease-in-out;
   background-color: #754c8f57;
 }
+.game-card:hover {
+  transform: scale(1.05);
 
-.game-card:hover > .game-card__front {
-  // transform: perspective(600px) rotateY(-180deg);
-}
-.game-card:hover > .game-card__back {
-  // transform: perspective(600px) rotateY(0deg);
 }
 
 .flipped-front {
@@ -117,8 +114,8 @@
 
 .true-game-card {
   transition: 0.3s;
-  transform: scale(0.95, 0.95);
   filter: blur(3px);
+  animation: dance 2s linear infinite 500ms;
 }
 
 .discription_hidden {
@@ -151,6 +148,19 @@
 
 .game-card__discription-btn-back:hover {
   transform: rotate(180deg);
+}
+
+
+@keyframes dance {
+  0%, 100% {
+      transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-1deg);
+  }
+  75% {
+      transform: rotate(1deg);
+  }
 }
 
 @media (max-width: 1200px) {

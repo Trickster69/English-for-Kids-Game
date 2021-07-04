@@ -1,5 +1,5 @@
 import { BaseComponent } from '../BaseComponent';
-import './SuccessPoin.scss';
+import './Point.scss';
 
 export class SuccessPoint extends BaseComponent {
   succseesPoint: HTMLImageElement;
@@ -9,16 +9,9 @@ export class SuccessPoint extends BaseComponent {
     this.succseesPoint = document.createElement('img');
   }
 
-  addSuccessPoin() {
+  addPoint(status:string):HTMLElement {
     this.succseesPoint.classList.add('success-point');
-    this.succseesPoint.src = './success.svg';
-    this.element.appendChild(this.succseesPoint);
-    return this.element;
-  }
-
-  addFailPoin() {
-    this.succseesPoint.classList.add('success-point');
-    this.succseesPoint.src = './loose.svg';
+    this.succseesPoint.src = `./${status}.png`;
     this.element.appendChild(this.succseesPoint);
     return this.element;
   }

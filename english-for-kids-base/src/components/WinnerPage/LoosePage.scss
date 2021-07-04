@@ -1,0 +1,47 @@
+.loose {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 300px;
+  background-color: #84abb8d1;
+  z-index: 5;
+  border-radius: 47%;
+  background: url('../../assets/img/grass.jpg');
+  background-size: 100%; /* Современные браузеры */
+
+}
+
+.loose__image {
+  width: 250px;
+  position: relative;
+  top: -16%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.loose__image img {
+  width: 100%;
+}
+
+.loose__text {
+  text-align: center;
+  font-family: 'Countryhouse';
+  font-size: 35px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  color: #9c27b0bf;
+  transform: translateX(-50%);
+}
+
+.loose__mistakes {
+  font-family: 'Countryhouse';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 76%;
+  font-size: 33px;
+  color: #3f51b5;
+}

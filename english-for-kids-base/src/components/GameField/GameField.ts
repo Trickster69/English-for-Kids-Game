@@ -35,8 +35,8 @@ export class GameField extends BaseComponent {
     this.succseesPoint.src = './success.svg';
   }
 
-  addSuccessPoint() {
-    this.score.appendChild(this.succseesPoint);
+  clearScore() {
+    this.score.innerHTML = '';
   }
 
   removeGameField():void {
@@ -80,6 +80,7 @@ export class GameField extends BaseComponent {
     this.clearGame();
     this.element.appendChild(this.startBtnWrap);
     this.element.appendChild(this.score);
+    this.clearScore();
   }
 
   clearGame():void {
