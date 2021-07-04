@@ -167,7 +167,7 @@ export class Game extends BaseComponent {
 
   showGameResult():void {
     if (store.wrongAnswers > 0) {
-      document.body.append(new LoosePage().element);
+      this.element.append(new LoosePage().element);
     } else {
       console.log('Verno');
     }
