@@ -7,11 +7,15 @@ import './GameField.scss';
 export class GameField extends BaseComponent {
   wordsCards: GameCard[] = [];
 
-  checkbox: HTMLInputElement | null;
+  private checkbox: HTMLInputElement | null;
 
   startBtnWrap: HTMLDivElement;
 
   startBtn: HTMLButtonElement;
+
+  score: HTMLDivElement;
+
+  succseesPoint: HTMLImageElement;
 
   constructor() {
     super('div', ['game-cards-field']);
@@ -23,6 +27,16 @@ export class GameField extends BaseComponent {
     this.startBtnWrap.appendChild(this.startBtn);
     this.checkbox = document.querySelector('#switch_checkbox');
     this.changeStartBtnText();
+    this.score = document.createElement('div');
+    this.score.classList.add('score');
+
+    this.succseesPoint = document.createElement('img');
+    this.succseesPoint.classList.add('success-point');
+    this.succseesPoint.src = './success.svg';
+  }
+
+  addSuccessPoint() {
+    this.score.appendChild(this.succseesPoint);
   }
 
   removeGameField():void {
@@ -63,7 +77,14 @@ export class GameField extends BaseComponent {
       this.element.appendChild(card.element);
     });
     store.category = category;
-
+    this.clearGame();
     this.element.appendChild(this.startBtnWrap);
+    this.element.appendChild(this.score);
+  }
+
+  clearGame():void {
+    store.trueWords = [];
+    store.btnStatus = 'Start';
+    this.startBtn.textContent = 'Start';
   }
 }

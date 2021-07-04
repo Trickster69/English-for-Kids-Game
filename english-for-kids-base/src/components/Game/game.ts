@@ -8,6 +8,7 @@ import store from '../store';
 import { Overlay } from '../Overlay/Overlay';
 import { AudioController } from '../AudioController';
 import cardsObj from '../../cards';
+import { SuccessPoint } from '../SuccessPoin/SuccessPoin';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -20,9 +21,13 @@ export class Game extends BaseComponent {
 
   private readonly overlay: Overlay;
 
+  private readonly audioController:AudioController;
+
   private i: number;
 
   checkbox: HTMLInputElement | null;
+
+  private word: string | undefined;
 
   constructor() {
     super();
@@ -33,6 +38,7 @@ export class Game extends BaseComponent {
     this.navigation = new Navigation();
     this.checkbox = document.querySelector('#switch_checkbox');
     this.overlay = new Overlay();
+    this.audioController = new AudioController();
     document.body.append(this.overlay.element);
     this.toggleMenu();
     this.i = 0;
@@ -79,61 +85,54 @@ export class Game extends BaseComponent {
     this.categoryFields.addCategoryCards(cards);
     this.switchGameMode();
 
-    //кнопка старт
     this.gameField.startBtnWrap.addEventListener('click', () => {
-      //TODO: fix to function
-      const index = cardsObj[0].indexOf(store.category as any);
-      const arrAnimalsObjs = cardsObj[index + 1];
-      const wordsArr = arrAnimalsObjs.map((key:any) => key.word.toLowerCase());
-      const wordsSorted = wordsArr.sort(() => Math.random() - 0.5);
+      if (store.btnStatus === 'Start') {
+        store.btnStatus = 'Repeat';
+        //TODO: fix to function
+        const index = cardsObj[0].indexOf(store.category as any);
+        const arrAnimalsObjs = cardsObj[index + 1];
+        const wordsArr = arrAnimalsObjs.map((key:any) => key.word.toLowerCase());
+        const wordsSorted = wordsArr.sort(() => Math.random() - 0.5);
 
-      store.storeWords = wordsSorted;
+        store.storeWords = wordsSorted;
 
-      this.playAudio(store.storeWords as string[]);
-      this.waitResponse();
+        this.playAudio(store.storeWords as string[]);
+        this.waitResponse();
+      } else {
+        console.log('repeat');
+        new Audio(`https://wooordhunt.ru/data/sound/sow/us/${store.word}.mp3`).play();
+      }
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   playAudio(array:string[]):void {
-    const word = array.pop();
-    new Audio(`https://wooordhunt.ru/data/sound/sow/us/${word}.mp3`).play();
-    store.word = word;
-    // this.waitResponse();
+    this.word = array.pop();
+    new Audio(`https://wooordhunt.ru/data/sound/sow/us/${this.word}.mp3`).play();
+    store.word = this.word;
   }
 
   waitResponse():void {
-    console.log('ckjdj');
-
     this.gameField.wordsCards.forEach((card) => card.element.addEventListener('click', () => {
       const clickWord = card.element.className.split(' ')[1].toLowerCase();
       if (clickWord === store.word) {
         console.log('верно');
-        setTimeout(() => {
-          this.playAudio(store.storeWords as string[]);
-        }, 3000);
+        card.element.classList.add('true-game-card');
+        const outer = card.element.outerHTML;
+        card.element.outerHTML = outer;
+        store.trueWords?.push(clickWord);
+        // const point = new SuccessPoint();
+        this.gameField.score.append(new SuccessPoint().addSuccessPoin());
+        console.log(store.trueWords);
+        this.audioController.successPlay();
+        if (store.trueWords.length < 8) {
+          setTimeout(() => {
+            this.playAudio(store.storeWords as string[]);
+          }, 500);
+        }
       } else {
         console.log('мимо');
-      }
-    }));
-  }
-
-  gameCycle(array: string[]):void {
-    new Audio(`https://wooordhunt.ru/data/sound/sow/us/${array[this.i]}.mp3`).play();
-    this.gameField.wordsCards.forEach((card) => card.element.addEventListener('click', () => {
-      const clickWord = card.element.className.split(' ')[1].toLowerCase();
-      if (array[this.i] === clickWord) {
-        console.log('ПРАВИЛЬНО');
-        card.element.style.backgroundColor = 'green';
-        ++this.i;
-        if (this.i <= 7) {
-          this.gameCycle(array);
-        } else if (this.i === 8) {
-          console.log('ПОБЕДА');
-        }
-      }
-      if (array[this.i] !== clickWord) {
-        console.log('ERROOOOOR');
+        this.audioController.failPlay();
+        this.gameField.score.append(new SuccessPoint().addFailPoin());
       }
     }));
   }
@@ -145,13 +144,14 @@ export class Game extends BaseComponent {
         this.gameField.startBtnWrap.classList.add('start_btn__active');
         this.categoryFields.categoryCards.forEach((card) => {
           // card.categoryCard.style.color = 'rgb(60 231 194)';
-          card.categoryCard.style.color = 'rgb(33 201 112)';
+          card.categoryCard.style.borderColor = 'rgb(33 201 112)';
         });
       } else {
         store.playMode = 'false';
         this.gameField.startBtnWrap.classList.remove('start_btn__active');
         this.categoryFields.categoryCards.forEach((card) => {
-          card.categoryCard.style.color = '#b383d4';
+          // card.categoryCard.style.color = '#b383d4';
+          card.categoryCard.style.borderColor = '#7a2385';
         });
       }
       this.gameField.wordsCards.forEach((card) => {
