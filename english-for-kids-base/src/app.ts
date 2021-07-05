@@ -11,7 +11,7 @@ export class App {
     const images: any[] = cards[0];
     const game = new Game();
     this.header = new Header();
-    game.newGame(images);
+    game.renderGame(images);
     // this.categoryField = new CategoryField();
     // this.rootElement.appendChild(this.header.element);
     this.rootElement.appendChild(game.element);

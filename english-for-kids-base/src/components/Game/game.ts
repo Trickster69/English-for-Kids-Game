@@ -49,10 +49,57 @@ export class Game extends BaseComponent {
     this.i = 0;
   }
 
-  newGame(images: string[]): void {
+  renderGame(images: string[]): void {
     this.categoryFields.clearCategoryField();
     const cards = images.map((img) => new CategoryCard(`${img}`));
 
+    this.changePagetoMenu(cards as CategoryCard[]);
+    this.renderGameCards(cards as CategoryCard[]);
+    this.switchGameMode();
+    this.startGame();
+  }
+
+  startGame():void {
+    this.gameField.startBtnWrap.addEventListener('click', () => {
+      if (store.btnStatus === 'Start') {
+        store.btnStatus = 'Repeat';
+        /* TODO: fix to function */
+        const index = cardsObj[0].indexOf(store.category as any);
+        const arrAnimalsObjs = cardsObj[index + 1];
+        const wordsArr = arrAnimalsObjs.map((key:any) => key.word.toLowerCase());
+        const wordsSorted = wordsArr.sort(() => Math.random() - 0.5);
+
+        store.storeWords = wordsSorted;
+
+        this.playAudio(store.storeWords as string[]);
+        this.waitResponse();
+      } else {
+        new Audio(`https://wooordhunt.ru/data/sound/sow/us/${store.word}.mp3`).play();
+      }
+    });
+  }
+
+  renderGameCards(cards:CategoryCard[]):void {
+    cards.forEach((card) => {
+      card.element.addEventListener('click', () => {
+        const category = card.element.classList[1];
+        this.newFieldRender(category);
+        this.markerNavigationMenu(category);
+      });
+    });
+    this.categoryFields.addCategoryCards(cards);
+  }
+
+  markerNavigationMenu(category:string):void {
+    this.navigation.menuItems.forEach((item) => item.classList.remove('active_li'));
+    this.navigation.menuItems.forEach((key) => {
+      if (key.textContent === category) {
+        key.classList.add('active_li');
+      }
+    });
+  }
+
+  changePagetoMenu(cards:CategoryCard[]):void {
     this.navigation.menuItems.forEach((item) => {
       item.addEventListener('click', () => {
         if (item.textContent === 'main page') {
@@ -69,42 +116,6 @@ export class Game extends BaseComponent {
           this.element.appendChild(this.gameField.element);
         }
       });
-    });
-
-    cards.forEach((card) => {
-      card.element.addEventListener('click', () => {
-        const category = card.element.classList[1];
-        this.newFieldRender(category);
-
-        this.navigation.menuItems.forEach((item) => item.classList.remove('active_li'));
-        this.navigation.menuItems.forEach((key) => {
-          if (key.textContent === category) {
-            key.classList.add('active_li');
-          }
-        });
-        // store.category = category;
-      });
-    });
-    this.categoryFields.addCategoryCards(cards);
-    this.switchGameMode();
-
-    this.gameField.startBtnWrap.addEventListener('click', () => {
-      if (store.btnStatus === 'Start') {
-        store.btnStatus = 'Repeat';
-        /* TODO: fix to function */
-        const index = cardsObj[0].indexOf(store.category as any);
-        const arrAnimalsObjs = cardsObj[index + 1];
-        const wordsArr = arrAnimalsObjs.map((key:any) => key.word.toLowerCase());
-        const wordsSorted = wordsArr.sort(() => Math.random() - 0.5);
-
-        store.storeWords = wordsSorted;
-
-        this.playAudio(store.storeWords as string[]);
-        this.waitResponse();
-      } else {
-        console.log('repeat');
-        new Audio(`https://wooordhunt.ru/data/sound/sow/us/${store.word}.mp3`).play();
-      }
     });
   }
 
