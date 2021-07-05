@@ -25,39 +25,41 @@ export class AudioController {
     this.victory = new Audio('./audio/victory.mp3');
     this.gameOver = new Audio('./audio/game_over.mp3');
     this.mouseEnterCard.volume = 0.3;
+    this.victory.volume = 0.5;
+    this.gameOver.volume = 0.5;
     this.fail.currentTime = 0;
   }
 
-  clickMenu() {
+  clickMenu():void {
     this.headerMenu.play();
   }
 
-  clickSwitcher() {
+  clickSwitcher():void {
     this.headerSwitcher.currentTime = 0;
     this.headerSwitcher.play();
   }
 
-  mouseEnterCar() {
+  mouseEnterCar():void {
     this.mouseEnterCard.play();
   }
 
-  clickTOCard() {
+  clickTOCard():void {
     this.clickCard.play();
   }
 
-  successPlay() {
+  successPlay():void {
     this.success.play();
   }
 
-  failPlay() {
+  failPlay():void {
     this.fail.play();
   }
 
-  victoryPlay() {
+  victoryPlay():void {
     this.victory.play();
   }
 
-  gameOverPlay() {
+  gameOverPlay():void {
     this.gameOver.play();
   }
 }

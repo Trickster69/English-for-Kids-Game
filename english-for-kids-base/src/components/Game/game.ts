@@ -54,7 +54,7 @@ export class Game extends BaseComponent {
     const cards = images.map((img) => new CategoryCard(`${img}`));
 
     this.changePagetoMenu(cards as CategoryCard[]);
-    this.renderGameCards(cards as CategoryCard[]);
+    this.renderCategoryCards(cards as CategoryCard[]);
     this.switchGameMode();
     this.startGame();
   }
@@ -71,7 +71,7 @@ export class Game extends BaseComponent {
 
         store.storeWords = wordsSorted;
 
-        this.playAudio(store.storeWords as string[]);
+        this.playWordAudio(store.storeWords as string[]);
         this.waitResponse();
       } else {
         new Audio(`https://wooordhunt.ru/data/sound/sow/us/${store.word}.mp3`).play();
@@ -79,10 +79,16 @@ export class Game extends BaseComponent {
     });
   }
 
-  renderGameCards(cards:CategoryCard[]):void {
+  renderCategoryCards(cards:CategoryCard[]):void {
     cards.forEach((card) => {
       card.element.addEventListener('click', () => {
         const category = card.element.classList[1];
+        if (store.playMode === 'true') {
+          this.gameField.startBtnWrap.classList.add('start_btn__active');
+        } else {
+          this.gameField.startBtnWrap.classList.remove('start_btn__active');
+        }
+
         this.newFieldRender(category);
         this.markerNavigationMenu(category);
       });
@@ -119,7 +125,7 @@ export class Game extends BaseComponent {
     });
   }
 
-  playAudio(array:string[]):void {
+  playWordAudio(array:string[]):void {
     this.word = array.pop();
     new Audio(`https://wooordhunt.ru/data/sound/sow/us/${this.word}.mp3`).play();
     store.word = this.word;
@@ -133,7 +139,7 @@ export class Game extends BaseComponent {
 
         if (store.trueWords.length < 8) {
           setTimeout(() => {
-            this.playAudio(store.storeWords as string[]);
+            this.playWordAudio(store.storeWords as string[]);
           }, 1000);
         } else {
           this.showGameResult();
@@ -198,10 +204,12 @@ export class Game extends BaseComponent {
 
   showGameResult():void {
     if (store.wrongAnswers > 0) {
+      new AudioController().gameOverPlay();
       const loosePage = new LoosePage();
       this.element.append(loosePage.element);
       this.closeOverlayResult(loosePage);
     } else {
+      new AudioController().victoryPlay();
       const winnerPage = new WinnerPage();
       this.element.append(winnerPage.element);
       this.closeOverlayResult(winnerPage);
