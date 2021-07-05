@@ -9,7 +9,10 @@ import { Overlay } from '../Overlay/Overlay';
 import { AudioController } from '../AudioController';
 import cardsObj from '../../cards';
 import { SuccessPoint } from '../Point/Point';
-import { LoosePage } from '../WinnerPage/LoosePage';
+import { LoosePage } from '../LoosePage/LoosePage';
+import { WinnerPage } from '../WinnerPage/WinnerPage';
+import { OverlayResult } from '../OverlayResult/OverlayResult';
+import { GameCard } from '../GameCard/GameCard';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -26,7 +29,7 @@ export class Game extends BaseComponent {
 
   private i: number;
 
-  checkbox: HTMLInputElement | null;
+  // checkbox: HTMLInputElement | null;
 
   private word: string | undefined;
 
@@ -38,7 +41,7 @@ export class Game extends BaseComponent {
     this.element.appendChild(this.categoryFields.element);
     this.header = new Header();
     this.navigation = new Navigation();
-    this.checkbox = document.querySelector('#switch_checkbox');
+    // this.checkbox = document.querySelector('#switch_checkbox');
     this.overlay = new Overlay();
     this.audioController = new AudioController();
     document.body.append(this.overlay.element);
@@ -53,6 +56,7 @@ export class Game extends BaseComponent {
     this.navigation.menuItems.forEach((item) => {
       item.addEventListener('click', () => {
         if (item.textContent === 'main page') {
+          store.category = 'main page';
           this.categoryFields.removeCategoryField();
           this.gameField.removeGameField();
           this.categoryFields.addCategoryCards(cards);
@@ -70,10 +74,7 @@ export class Game extends BaseComponent {
     cards.forEach((card) => {
       card.element.addEventListener('click', () => {
         const category = card.element.classList[1];
-        this.categoryFields.removeCategoryField();
-        this.gameField.clearGameField();
-        this.gameField.renderGameCards(category);
-        this.element.appendChild(this.gameField.element);
+        this.newFieldRender(category);
 
         this.navigation.menuItems.forEach((item) => item.classList.remove('active_li'));
         this.navigation.menuItems.forEach((key) => {
@@ -90,7 +91,7 @@ export class Game extends BaseComponent {
     this.gameField.startBtnWrap.addEventListener('click', () => {
       if (store.btnStatus === 'Start') {
         store.btnStatus = 'Repeat';
-        //TODO: fix to function
+        /* TODO: fix to function */
         const index = cardsObj[0].indexOf(store.category as any);
         const arrAnimalsObjs = cardsObj[index + 1];
         const wordsArr = arrAnimalsObjs.map((key:any) => key.word.toLowerCase());
@@ -117,47 +118,58 @@ export class Game extends BaseComponent {
     this.gameField.wordsCards.forEach((card) => card.element.addEventListener('click', () => {
       const clickWord = card.element.className.split(' ')[1].toLowerCase();
       if (clickWord === store.word) {
-        console.log('верно');
-        card.element.classList.add('true-game-card');
-        const outer = card.element.outerHTML;
-        card.element.outerHTML = outer;
-        store.trueWords?.push(clickWord);
-        this.gameField.score.append(new SuccessPoint().addPoint('success'));
-        console.log(store.trueWords);
-        this.audioController.successPlay();
+        this.successMatch(card, clickWord);
+
         if (store.trueWords.length < 8) {
           setTimeout(() => {
             this.playAudio(store.storeWords as string[]);
-          }, 500);
+          }, 1000);
         } else {
           this.showGameResult();
         }
       } else {
-        console.log('мимо');
-        ++store.wrongAnswers;
-        this.audioController.failPlay();
-        this.gameField.score.append(new SuccessPoint().addPoint('fail'));
+        this.failMatch();
       }
     }));
+  }
+
+  successMatch(card:GameCard, clickWord:string):void {
+    card.element.classList.add('true-game-card');
+    const outer = card.element.outerHTML;
+    card.element.outerHTML = outer;
+    store.trueWords?.push(clickWord);
+    this.gameField.score.append(new SuccessPoint().addPoint('success'));
+    this.audioController.successPlay();
+  }
+
+  failMatch():void {
+    ++store.wrongAnswers;
+    this.audioController.failPlay();
+    this.gameField.score.append(new SuccessPoint().addPoint('fail'));
   }
 
   switchGameMode():void {
     this.header.checkbox?.addEventListener('click', () => {
       if (this.header.checkbox?.checked) {
-        store.playMode = 'true';
-        this.gameField.startBtnWrap.classList.add('start_btn__active');
+        if (store.category === 'main page') {
+          this.categoryFields.categoryCards.forEach((card) => {
+            card.categoryCard.style.borderColor = 'rgb(33 201 112)';
+          });
+        } else {
+          store.playMode = 'true';
+          this.newFieldRender(store.category);
+          this.gameField.startBtnWrap.classList.add('start_btn__active');
+        }
+      } else if (store.category === 'main page') {
         this.categoryFields.categoryCards.forEach((card) => {
-          // card.categoryCard.style.color = 'rgb(60 231 194)';
-          card.categoryCard.style.borderColor = 'rgb(33 201 112)';
+          card.categoryCard.style.borderColor = '#7a2385';
         });
       } else {
         store.playMode = 'false';
+        this.newFieldRender(store.category);
         this.gameField.startBtnWrap.classList.remove('start_btn__active');
-        this.categoryFields.categoryCards.forEach((card) => {
-          // card.categoryCard.style.color = '#b383d4';
-          card.categoryCard.style.borderColor = '#7a2385';
-        });
       }
+
       this.gameField.wordsCards.forEach((card) => {
         card.playMode();
         card.trainMode();
@@ -165,12 +177,31 @@ export class Game extends BaseComponent {
     });
   }
 
+  newFieldRender(category:string):void {
+    this.gameField.clearGameField();
+    this.gameField.removeGameField();
+    this.categoryFields.removeCategoryField();
+    this.gameField.renderGameCards(category);
+    this.element.appendChild(this.gameField.element);
+  }
+
   showGameResult():void {
     if (store.wrongAnswers > 0) {
-      this.element.append(new LoosePage().element);
+      const loosePage = new LoosePage();
+      this.element.append(loosePage.element);
+      this.closeOverlayResult(loosePage);
     } else {
-      console.log('Verno');
+      const winnerPage = new WinnerPage();
+      this.element.append(winnerPage.element);
+      this.closeOverlayResult(winnerPage);
     }
+  }
+
+  closeOverlayResult(resultpage: LoosePage | WinnerPage): void {
+    resultpage.overlay.element.addEventListener('click', () => {
+      resultpage.element.remove();
+      this.newFieldRender(store.category);
+    });
   }
 
   toggleMenu():void {

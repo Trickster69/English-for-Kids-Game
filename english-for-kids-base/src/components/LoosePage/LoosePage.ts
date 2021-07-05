@@ -6,7 +6,7 @@ import './LoosePage.scss';
 export class LoosePage extends BaseComponent {
   overlay: OverlayResult;
 
-  loose: HTMLDivElement;
+  private loose: HTMLDivElement;
 
   constructor() {
     super('div', ['loose-wrapper']);
@@ -29,4 +29,11 @@ export class LoosePage extends BaseComponent {
     `;
     this.element.appendChild(this.loose);
   }
+
+  // hideGameResult(callback:any):void {
+  //   this.overlay.element.addEventListener('click', () => {
+  //     console.log('click ovelray loose');
+  //     callback(store.category);
+  //   });
+  // }
 }

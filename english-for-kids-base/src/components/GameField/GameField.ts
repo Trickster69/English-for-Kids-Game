@@ -86,6 +86,7 @@ export class GameField extends BaseComponent {
   clearGame():void {
     store.trueWords = [];
     store.btnStatus = 'Start';
+    store.wrongAnswers = 0;
     this.startBtn.textContent = 'Start';
   }
 }

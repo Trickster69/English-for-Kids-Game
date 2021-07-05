@@ -1,5 +1,6 @@
 import { AudioController } from '../AudioController';
 import { BaseComponent } from '../BaseComponent';
+import store from '../store';
 import './CategoryCard.scss';
 
 export class CategoryCard extends BaseComponent {

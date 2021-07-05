@@ -1,0 +1,49 @@
+.winner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 250px;
+  background-color: #84abb8d1;
+  z-index: 5;
+  border-radius: 47%;
+  background: url('../../assets/img/bg2.jpg');
+  background-position: 0% 65%;
+  background-repeat: no-repeat;
+  background-position-x: 17%;
+
+}
+
+.winner__image {
+  width: 250px;
+  position: relative;
+  top: -66%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.winner__image img {
+  width: 100%;
+}
+
+.winner__text {
+  text-align: center;
+  font-family: 'Countryhouse';
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  color: #ecf3f9;
+  left: 50%;
+  // color: #d87c68;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+.winner__subtitle {
+  // color: #344c49;
+  color: #f5c6c1;
+  font-size: 30px;
+  font-size: 30px;
+  padding-top: 15px;
+}
