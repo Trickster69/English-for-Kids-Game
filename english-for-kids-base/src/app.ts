@@ -2,13 +2,14 @@ import { CategoryField } from './components/CategoryField/CategoryField';
 import cards from './cards';
 import { Game } from './components/Game/game';
 import { Header } from './components/Header/Header';
+import { ICards } from './components/Icards';
 
 export class App {
   header: Header;
   // private readonly categoryField: CategoryField;
 
   constructor(private readonly rootElement: HTMLElement) {
-    const images: any[] = cards[0];
+    const images: string[] = cards[0];
     const game = new Game();
     this.header = new Header();
     game.renderGame(images);

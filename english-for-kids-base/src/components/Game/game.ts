@@ -13,6 +13,7 @@ import { LoosePage } from '../LoosePage/LoosePage';
 import { WinnerPage } from '../WinnerPage/WinnerPage';
 import { OverlayResult } from '../OverlayResult/OverlayResult';
 import { GameCard } from '../GameCard/GameCard';
+import { ICards } from '../Icards';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -26,8 +27,6 @@ export class Game extends BaseComponent {
   private readonly overlay: Overlay;
 
   private readonly audioController:AudioController;
-
-  private i: number;
 
   // checkbox: HTMLInputElement | null;
 
@@ -46,7 +45,6 @@ export class Game extends BaseComponent {
     this.audioController = new AudioController();
     document.body.append(this.overlay.element);
     this.toggleMenu();
-    this.i = 0;
   }
 
   renderGame(images: string[]): void {
@@ -54,7 +52,7 @@ export class Game extends BaseComponent {
     const cards = images.map((img) => new CategoryCard(`${img}`));
 
     this.changePagetoMenu(cards as CategoryCard[]);
-    this.renderCategoryCards(cards as CategoryCard[]);
+    this.renderCards(cards as CategoryCard[]);
     this.switchGameMode();
     this.startGame();
   }
@@ -64,11 +62,16 @@ export class Game extends BaseComponent {
       if (store.btnStatus === 'Start') {
         store.btnStatus = 'Repeat';
         /* TODO: fix to function */
-        const index = cardsObj[0].indexOf(store.category as any);
+        const index = cardsObj[0].indexOf(store.category as string);
         const arrAnimalsObjs = cardsObj[index + 1];
-        const wordsArr = arrAnimalsObjs.map((key:any) => key.word.toLowerCase());
-        const wordsSorted = wordsArr.sort(() => Math.random() - 0.5);
+        const wordsArr = arrAnimalsObjs.map((key:ICards | undefined| string) => {
+          if (typeof key === 'object') {
+            return key.word.toLowerCase();
+          }
+          return undefined;
+        });
 
+        const wordsSorted = wordsArr.sort(() => Math.random() - 0.5);
         store.storeWords = wordsSorted;
 
         this.playWordAudio(store.storeWords as string[]);
@@ -79,7 +82,7 @@ export class Game extends BaseComponent {
     });
   }
 
-  renderCategoryCards(cards:CategoryCard[]):void {
+  renderCards(cards:CategoryCard[]):void {
     cards.forEach((card) => {
       card.element.addEventListener('click', () => {
         const category = card.element.classList[1];
@@ -118,7 +121,7 @@ export class Game extends BaseComponent {
           this.gameField.clearGameField();
           this.gameField.removeGameField();
           this.categoryFields.removeCategoryField();
-          this.gameField.renderGameCards(item.textContent);
+          this.gameField.renderGameCards(item.textContent as string);
           this.element.appendChild(this.gameField.element);
         }
       });

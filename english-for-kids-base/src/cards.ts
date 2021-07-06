@@ -1,4 +1,7 @@
-const cards = [
+import { ICards } from './components/Icards';
+
+const cards: [string[], ...ICards[][]] = [
+// const cards = [
   ['animals', 'animals2', 'clothing', 'gastronomy', 'music', 'sport', 'toys', 'travel'],
   [
     {

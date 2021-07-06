@@ -30,10 +30,7 @@ export class LoosePage extends BaseComponent {
     this.element.appendChild(this.loose);
   }
 
-  // hideGameResult(callback:any):void {
-  //   this.overlay.element.addEventListener('click', () => {
-  //     console.log('click ovelray loose');
-  //     callback(store.category);
-  //   });
-  // }
+  get loose_element() {
+    return this.loose;
+  }
 }

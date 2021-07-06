@@ -1,6 +1,7 @@
 import cards from '../../cards';
 import { BaseComponent } from '../BaseComponent';
 import { GameCard } from '../GameCard/GameCard';
+import { ICards } from '../Icards';
 import store from '../store';
 import './GameField.scss';
 
@@ -54,16 +55,26 @@ export class GameField extends BaseComponent {
     });
   }
 
-  renderGameCards(category:any):void {
+  renderGameCards(category:string):void {
     const index = cards[0].indexOf(category);
     this.clearGameField();
     const arrAnimalsObjs = cards[index + 1];
 
-    const wordsArr = arrAnimalsObjs.map((key:any) => key.word);
-    const translateArr = arrAnimalsObjs.map((key:any) => key.translation);
+    const wordsArr = arrAnimalsObjs.map((key:ICards | undefined| string) => {
+      if (typeof key === 'object') {
+        return key.word.toLowerCase();
+      }
+      return undefined;
+    });
+    const translateArr = arrAnimalsObjs.map((key:ICards | undefined| string) => {
+      if (typeof key === 'object') {
+        return key.translation;
+      }
+      return undefined;
+    });
 
     for (let i = 0; i < wordsArr.length; i++) {
-      this.wordsCards.push(new GameCard(wordsArr[i], translateArr[i], category));
+      this.wordsCards.push(new GameCard(wordsArr[i] as string, translateArr[i] as string, category));
     }
 
     this.wordsCards.forEach((card) => {

@@ -1,7 +1,7 @@
 export default {
   playMode: 'false',
   category: 'main page' as string,
-  storeWords: [] as string[] | null,
+  storeWords: [] as (string | undefined)[],
   word: 'cat' as string | undefined,
   btnStatus: 'Start' as string,
   trueWords: [] as string[],
