@@ -29,36 +29,7 @@ body {
   background-attachment: fixed;
 }
 
-.table {
-    border-collapse: collapse;
-    color: black;
-    font-family: Countryhouse;
-    font-size: 18px;
-    width: 97%;
-    background-color: wheat;
-    box-shadow: 3px 3px 15px 2px rgb(138 83 0 / 25%), -3px -3px 15px 2px rgb(138 83 0 / 22%);
-    margin: 0 auto;
-    margin-top: 100px;
-}
 
-.table_head {
-  font-size: 25px;
-  font-weight: bold;
-  color: #00bcd4b0;
-}
-
-td {
-  text-align: center;
-}
-
-.table__wrapper {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: #00000040;
-  z-index: 4;
-}
 // .overlay_result {
 //   position: fixed;
 //   width: 100%;

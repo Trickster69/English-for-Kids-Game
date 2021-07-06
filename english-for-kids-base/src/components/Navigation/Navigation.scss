@@ -30,6 +30,12 @@
   transition: 0.2s ease-in-out;
 }
 
+.menu .statistic {
+  position: absolute;
+  color: #673ab7;
+  bottom: -13%;
+}
+
 .menu .active_li {
   color: #fc918d;
 }
@@ -42,3 +48,4 @@
 .show {
   left: 0;
 }
+

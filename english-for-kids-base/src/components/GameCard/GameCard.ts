@@ -1,6 +1,7 @@
 import './Game.Card.scss';
-import { AudioController } from '../AudioController';
-import { BaseComponent } from '../BaseComponent';
+import { AudioController } from '../../assets/Utils/AudioController';
+import { BaseComponent } from '../../assets/Utils/BaseComponent';
+import { addPoint } from '../../assets/Utils/AddPoint';
 import store from '../store';
 
 export class GameCard extends BaseComponent {
@@ -62,8 +63,20 @@ export class GameCard extends BaseComponent {
       if (store.playMode === 'false') {
         this.playWord(this.element);
       }
+      if (store.startGame) {
+        addPoint(this.element.classList[1], 'clicks');
+        // this.addClick(this.element, 'clicks');
+      }
     });
   }
+
+  // addClick(element:HTMLElement, operation:string): void {
+  //   const animal = element.classList[1].slice(0, 1).toUpperCase() + this.element.classList[1].slice(1);
+  //   const objRow = localStorage.getItem(animal as string);
+  //   const cont = JSON.parse(objRow as string);
+  //   ++cont[operation];
+  //   localStorage.setItem(animal, JSON.stringify(cont));
+  // }
 
   playWord(element:HTMLElement):void {
     const audio = element.classList[1].slice(0, 1).toLowerCase() + this.element.classList[1].slice(1);

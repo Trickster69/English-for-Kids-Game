@@ -1,4 +1,4 @@
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../../assets/Utils/BaseComponent';
 import './Point.scss';
 
 export class SuccessPoint extends BaseComponent {

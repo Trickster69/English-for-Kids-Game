@@ -1,4 +1,4 @@
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../../assets/Utils/BaseComponent';
 import './OverlayResult.scss';
 
 export class OverlayResult extends BaseComponent {

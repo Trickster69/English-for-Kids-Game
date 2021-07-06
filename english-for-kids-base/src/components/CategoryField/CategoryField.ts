@@ -1,4 +1,4 @@
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../../assets/Utils/BaseComponent';
 import { CategoryCard } from '../CategoryCard/CategoryCard';
 import store from '../store';
 import './CategoryField.scss';

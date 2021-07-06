@@ -25,7 +25,7 @@ const cards: [string[], ...ICards[][]] = [
     {
       category: 'animals',
       word: 'Hedgehog',
-      translation: 'Ёжик',
+      translation: 'Ежик',
       audioSrc: 'hedgehog.mp3',
     },
     {

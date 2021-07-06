@@ -1,5 +1,5 @@
-import { AudioController } from '../AudioController';
-import { BaseComponent } from '../BaseComponent';
+import { AudioController } from '../../assets/Utils/AudioController';
+import { BaseComponent } from '../../assets/Utils/BaseComponent';
 import store from '../store';
 import './Header.scss';
 
@@ -38,8 +38,10 @@ export class Header extends BaseComponent {
       new AudioController().clickSwitcher();
       if (this.checkbox?.checked) {
         store.playMode = 'true';
+        store.startGame = false;
       } else {
         store.playMode = 'false';
+        store.startGame = false;
       }
     });
   }

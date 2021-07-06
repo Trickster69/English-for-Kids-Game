@@ -1,5 +1,5 @@
-import { AudioController } from '../AudioController';
-import { BaseComponent } from '../BaseComponent';
+import { AudioController } from '../../assets/Utils/AudioController';
+import { BaseComponent } from '../../assets/Utils/BaseComponent';
 import { Overlay } from '../Overlay/Overlay';
 import './Navigation.scss';
 
@@ -19,12 +19,15 @@ export class Navigation extends BaseComponent {
         <li>sport</li>
         <li>toys</li>
         <li>travel</li>
+        <li class="statistic">statistic</li>
       </ul>
     `;
     this.menuItems = this.element.querySelectorAll('li');
     this.selectNavigationItem();
 
-    this.menuItems.forEach((item) => item.addEventListener('mouseenter', () => new AudioController().mouseEnterCar()));
+    // this.menuItems.forEach((item) => item.addEventListener('mouseenter', async () => {
+    //   await new AudioController().mouseEnterCar();
+    // }));
 
     this.menuItems.forEach((item) => item.addEventListener('click', () => {
       new AudioController().clickTOCard();

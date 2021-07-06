@@ -1,4 +1,4 @@
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../../assets/Utils/BaseComponent';
 import { CategoryCard } from '../CategoryCard/CategoryCard';
 import { CategoryField } from '../CategoryField/CategoryField';
 import { GameField } from '../GameField/GameField';
@@ -6,7 +6,7 @@ import { Header } from '../Header/Header';
 import { Navigation } from '../Navigation/Navigation';
 import store from '../store';
 import { Overlay } from '../Overlay/Overlay';
-import { AudioController } from '../AudioController';
+import { AudioController } from '../../assets/Utils/AudioController';
 import cardsObj from '../../cards';
 import { SuccessPoint } from '../Point/Point';
 import { LoosePage } from '../LoosePage/LoosePage';
@@ -14,6 +14,8 @@ import { WinnerPage } from '../WinnerPage/WinnerPage';
 import { OverlayResult } from '../OverlayResult/OverlayResult';
 import { GameCard } from '../GameCard/GameCard';
 import { ICards } from '../Icards';
+import { addPoint } from '../../assets/Utils/AddPoint';
+import { Score } from '../Score/Score';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -28,6 +30,8 @@ export class Game extends BaseComponent {
 
   private readonly audioController:AudioController;
 
+  private readonly statistic: Score;
+
   // checkbox: HTMLInputElement | null;
 
   private word: string | undefined;
@@ -40,6 +44,7 @@ export class Game extends BaseComponent {
     this.element.appendChild(this.categoryFields.element);
     this.header = new Header();
     this.navigation = new Navigation();
+    this.statistic = new Score();
     // this.checkbox = document.querySelector('#switch_checkbox');
     this.overlay = new Overlay();
     this.audioController = new AudioController();
@@ -60,6 +65,7 @@ export class Game extends BaseComponent {
   startGame():void {
     this.gameField.startBtnWrap.addEventListener('click', () => {
       if (store.btnStatus === 'Start') {
+        store.startGame = true;
         store.btnStatus = 'Repeat';
         /* TODO: fix to function */
         const index = cardsObj[0].indexOf(store.category as string);
@@ -113,14 +119,20 @@ export class Game extends BaseComponent {
       item.addEventListener('click', () => {
         if (item.textContent === 'main page') {
           store.category = 'main page';
-          this.categoryFields.removeCategoryField();
-          this.gameField.removeGameField();
+          this.clearFields();
           this.categoryFields.addCategoryCards(cards);
           this.element.appendChild(this.categoryFields.element);
+        } else if (item.textContent === 'statistic') {
+          store.category = 'statistic';
+          this.clearFields();
+          // this.statistic.renderTable();
+          this.element.appendChild(new Score().element);
         } else {
-          this.gameField.clearGameField();
-          this.gameField.removeGameField();
-          this.categoryFields.removeCategoryField();
+          // this.statistic.removeScore();
+          // this.gameField.clearGameField();
+          // this.gameField.removeGameField();
+          // this.categoryFields.removeCategoryField();
+          this.clearFields();
           this.gameField.renderGameCards(item.textContent as string);
           this.element.appendChild(this.gameField.element);
         }
@@ -128,9 +140,19 @@ export class Game extends BaseComponent {
     });
   }
 
+  clearFields(): void {
+    this.statistic.removeScore();
+    this.categoryFields.removeCategoryField();
+    this.gameField.removeGameField();
+    this.gameField.clearGameField();
+  }
+
   playWordAudio(array:string[]):void {
     this.word = array.pop();
     new Audio(`https://wooordhunt.ru/data/sound/sow/us/${this.word}.mp3`).play();
+    if (!this.word) {
+      throw new Error('check word');
+    }
     store.word = this.word;
   }
 
@@ -146,6 +168,7 @@ export class Game extends BaseComponent {
           }, 1000);
         } else {
           this.showGameResult();
+          store.startGame = false;
         }
       } else {
         this.failMatch();
@@ -160,12 +183,18 @@ export class Game extends BaseComponent {
     store.trueWords?.push(clickWord);
     this.gameField.score.append(new SuccessPoint().addPoint('success'));
     this.audioController.successPlay();
+
+    // const animal =
+    console.log(clickWord);
+    addPoint(clickWord, 'correct');
   }
 
   failMatch():void {
     ++store.wrongAnswers;
     this.audioController.failPlay();
     this.gameField.score.append(new SuccessPoint().addPoint('fail'));
+    addPoint(store.word, 'wrong');
+    console.log(store.word);
   }
 
   switchGameMode():void {
@@ -175,6 +204,8 @@ export class Game extends BaseComponent {
           this.categoryFields.categoryCards.forEach((card) => {
             card.categoryCard.style.borderColor = 'rgb(33 201 112)';
           });
+        } else if (store.category === 'statistic') {
+          return;
         } else {
           store.playMode = 'true';
           this.newFieldRender(store.category);
@@ -184,6 +215,8 @@ export class Game extends BaseComponent {
         this.categoryFields.categoryCards.forEach((card) => {
           card.categoryCard.style.borderColor = '#7a2385';
         });
+      } else if (store.category === 'statistic') {
+        return;
       } else {
         store.playMode = 'false';
         this.newFieldRender(store.category);

@@ -25,6 +25,7 @@ export class AudioController {
     this.victory = new Audio('./audio/victory.mp3');
     this.gameOver = new Audio('./audio/game_over.mp3');
     this.mouseEnterCard.volume = 0.3;
+    this.mouseEnterCard.currentTime = 0;
     this.victory.volume = 0.5;
     this.gameOver.volume = 0.5;
     this.fail.currentTime = 0;

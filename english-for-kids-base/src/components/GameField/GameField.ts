@@ -1,5 +1,5 @@
 import cards from '../../cards';
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../../assets/Utils/BaseComponent';
 import { GameCard } from '../GameCard/GameCard';
 import { ICards } from '../Icards';
 import store from '../store';
