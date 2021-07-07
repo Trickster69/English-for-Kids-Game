@@ -124,15 +124,14 @@ export class Game extends BaseComponent {
           this.element.appendChild(this.categoryFields.element);
         } else if (item.textContent === 'statistic') {
           store.category = 'statistic';
+          console.log('popal na staty');
+
           this.clearFields();
+          this.statistic.repeatField.remove();
           this.statistic.getTableData();
-          this.statistic.loadTableData();
+          this.statistic.renderTableData();
           this.element.appendChild(this.statistic.element);
         } else {
-          // this.statistic.removeScore();
-          // this.gameField.clearGameField();
-          // this.gameField.removeGameField();
-          // this.categoryFields.removeCategoryField();
           this.clearFields();
           this.gameField.renderGameCards(item.textContent as string);
           this.element.appendChild(this.gameField.element);

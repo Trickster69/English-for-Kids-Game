@@ -69,6 +69,15 @@
   cursor: pointer;
   background-color: #641dddb5;
 }
+.repeat-field {
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 80%;
+  position: relative;
+}
+
 
 .table_head td {
   // border: 1px solid black;
@@ -78,4 +87,26 @@ td {
   text-align: center;
 }
 
+.no-repeat {
+  margin: 0 auto;
+}
+
+.no-repeat__image {
+
+}
+
+.no-repeat__image img {
+  width: 100%;
+}
+
+.no-repeat__text {
+    font-family: "Countryhouse";
+    font-size: 36px;
+    color: #3f51b5;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 9%;
+    left: 50%;
+    transform: translate(-50%);
+}
 

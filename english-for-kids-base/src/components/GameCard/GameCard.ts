@@ -47,7 +47,6 @@ export class GameCard extends BaseComponent {
     this.element.appendChild(backCard);
 
     this.element.addEventListener('mouseenter', () => new AudioController().mouseEnterCar());
-    // this.element.addEventListener('click', () => new AudioController().clickTOCard());
 
     discriptionBtn.addEventListener('click', () => {
       this.element.querySelector('.game-card__front')?.classList.add('flipped-front');
