@@ -8,7 +8,7 @@
   background-color: #84abb8d1;
   z-index: 5;
   border-radius: 47%;
-  background: url('../../assets/img/bg2.jpg');
+  background: url("../../assets/img/bg2.jpg");
   background-position: 0% 65%;
   background-repeat: no-repeat;
   background-position-x: 17%;
@@ -17,11 +17,11 @@
 
 @keyframes show {
   0% {
-      top: -250%;
+    top: -250%;
   }
 
   100% {
-      top: 50%;
+    top: 50%;
   }
 }
 
@@ -39,7 +39,7 @@
 
 .winner__text {
   text-align: center;
-  font-family: 'Countryhouse';
+  font-family: "Countryhouse";
   font-size: 40px;
   position: absolute;
   top: 50%;

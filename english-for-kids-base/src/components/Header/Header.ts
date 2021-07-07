@@ -24,7 +24,9 @@ export class Header extends BaseComponent {
         <div class="header__game-mode">
           <div class="header__train-mode">Train</div>
           <label class="switch">
-            <input type="checkbox" id="switch_checkbox" ${store.playMode === 'true' ? 'checked' : ''}>
+            <input type="checkbox" id="switch_checkbox" ${
+              store.playMode === 'true' ? 'checked' : ''
+            }>
             <span class="slider"></span>
           </label>
           <div class="header__play-mode disabled">Play</div>
@@ -37,7 +39,7 @@ export class Header extends BaseComponent {
     this.switchStoreMode();
   }
 
-  switchStoreMode():void {
+  switchStoreMode(): void {
     this.checkbox?.addEventListener('change', () => {
       new AudioController().clickSwitcher();
       if (this.checkbox?.checked) {
@@ -52,8 +54,12 @@ export class Header extends BaseComponent {
     });
   }
 
-  changeColorForSwitch():void {
-    this.element.querySelector('.header__play-mode')?.classList.toggle('disabled');
-    this.element.querySelector('.header__train-mode')?.classList.toggle('disabled');
+  changeColorForSwitch(): void {
+    this.element
+      .querySelector('.header__play-mode')
+      ?.classList.toggle('disabled');
+    this.element
+      .querySelector('.header__train-mode')
+      ?.classList.toggle('disabled');
   }
 }

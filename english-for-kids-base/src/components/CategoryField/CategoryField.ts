@@ -10,16 +10,16 @@ export class CategoryField extends BaseComponent {
     super('div', ['categories']);
   }
 
-  clearCategoryField():void {
+  clearCategoryField(): void {
     this.categoryCards = [];
     this.element.innerHTML = '';
   }
 
-  removeCategoryField():void {
+  removeCategoryField(): void {
     this.element.remove();
   }
 
-  addCategoryCards(cards: CategoryCard[]):void {
+  addCategoryCards(cards: CategoryCard[]): void {
     this.categoryCards = cards;
     this.changeColortoCards();
     this.categoryCards.forEach((card) => {
@@ -27,7 +27,7 @@ export class CategoryField extends BaseComponent {
     });
   }
 
-  changeColortoCards():void {
+  changeColortoCards(): void {
     if (store.playMode === 'true') {
       this.categoryCards.forEach((card) => {
         card.categoryCard.style.borderColor = 'rgb(33, 201, 112)';

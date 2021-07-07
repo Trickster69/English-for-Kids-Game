@@ -1,6 +1,5 @@
 import { AudioController } from '../../assets/Utils/AudioController';
 import { BaseComponent } from '../../assets/Utils/BaseComponent';
-import { Overlay } from '../Overlay/Overlay';
 import './Navigation.scss';
 
 export class Navigation extends BaseComponent {

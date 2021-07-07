@@ -40,41 +40,45 @@ export class GameField extends BaseComponent {
     this.score.innerHTML = '';
   }
 
-  removeGameField():void {
+  removeGameField(): void {
     this.element.remove();
   }
 
-  clearGameField():void {
+  clearGameField(): void {
     this.wordsCards = [];
     this.element.innerHTML = '';
   }
 
-  changeStartBtnText():void {
+  changeStartBtnText(): void {
     this.startBtnWrap.addEventListener('click', () => {
       this.startBtn.textContent = 'Repeat';
     });
   }
 
-  renderGameCards(category:string):void {
+  renderGameCards(category: string): void {
     const index = cards[0].indexOf(category);
     this.clearGameField();
     const arrAnimalsObjs = cards[index + 1];
 
-    const wordsArr = arrAnimalsObjs.map((key:ICards | undefined| string) => {
+    const wordsArr = arrAnimalsObjs.map((key: ICards | undefined | string) => {
       if (typeof key === 'object') {
         return key.word.toLowerCase();
       }
       return undefined;
     });
-    const translateArr = arrAnimalsObjs.map((key:ICards | undefined| string) => {
-      if (typeof key === 'object') {
-        return key.translation;
-      }
-      return undefined;
-    });
+    const translateArr = arrAnimalsObjs.map(
+      (key: ICards | undefined | string) => {
+        if (typeof key === 'object') {
+          return key.translation;
+        }
+        return undefined;
+      },
+    );
 
     for (let i = 0; i < wordsArr.length; i++) {
-      this.wordsCards.push(new GameCard(wordsArr[i] as string, translateArr[i] as string, category));
+      this.wordsCards.push(
+        new GameCard(wordsArr[i] as string, translateArr[i] as string, category),
+      );
     }
 
     this.wordsCards.forEach((card) => {
@@ -94,7 +98,7 @@ export class GameField extends BaseComponent {
     this.clearScore();
   }
 
-  clearGame():void {
+  clearGame(): void {
     store.trueWords = [];
     store.btnStatus = 'Start';
     store.wrongAnswers = 0;

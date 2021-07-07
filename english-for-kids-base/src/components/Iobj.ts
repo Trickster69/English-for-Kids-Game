@@ -1,5 +1,5 @@
 export interface Iobj {
-  word:string;
+  word: string;
   translation: string;
   category: string;
   clicks: number;

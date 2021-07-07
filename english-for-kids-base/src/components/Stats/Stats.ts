@@ -30,7 +30,6 @@ export class Score extends BaseComponent {
     this.element.appendChild(this.table);
     this.thead = document.createElement('thead');
     this.table.appendChild(this.thead);
-    // this.thead.appendChild(this.table);
     this.thead.innerHTML = `
       <tr class="table_head">
         <th>Word</th>
@@ -60,14 +59,10 @@ export class Score extends BaseComponent {
     this.repeatField.classList.add('repeat-field');
 
     this.noRepeatBlock = document.createElement('div');
-    // const animalCount = localStorage.length;
     this.resetScore();
     this.tableData = [];
     this.getTableData();
-    // console.log(this.getTableData());
-    // this.renderTableData(this.getTableData());
     this.sortDirection = false;
-    // this.sortColumn('clicks');
     this.sortTable();
     this.renderDifiicultWord();
   }
@@ -86,7 +81,7 @@ export class Score extends BaseComponent {
     this.noRepeatBlock.appendChild(noRepeatText);
   }
 
-  sortTable():void {
+  sortTable(): void {
     this.thead.querySelectorAll('th').forEach((elem) => {
       elem.addEventListener('click', () => {
         if (elem.textContent) {
@@ -96,12 +91,10 @@ export class Score extends BaseComponent {
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  getTableData():void {
+  getTableData(): void {
     const data = [];
     for (let i = 0; i < localStorage.length; i++) {
       const currentWord = Object.keys(localStorage)[i];
-      const tableRow = document.createElement('tr');
       const currentStr = localStorage.getItem(currentWord);
       const curObj = JSON.parse(currentStr as string);
       const categoryWord = curObj.category;
@@ -117,7 +110,8 @@ export class Score extends BaseComponent {
         clicks: clicksWord as number,
         correct: correctWord as number,
         wrong: wrongWord as number,
-        errors: Math.floor(100 - ((correctWord / (clicksWord + wrongWord)) * 100)) || 0,
+        errors:
+          Math.floor(100 - (correctWord / (clicksWord + wrongWord)) * 100) || 0,
       };
 
       data.push(obj as Iobj);
@@ -125,14 +119,12 @@ export class Score extends BaseComponent {
     this.tableData = data;
   }
 
-  renderTableData():void {
+  renderTableData(): void {
     this.thead.style.display = 'table-row-group';
     this.repeatWords.style.display = 'block';
     this.resetBtn.style.display = 'block';
-    // const tableBody = this.tbody;
     const dataWords = this.tableData;
     this.tbody.innerHTML = '';
-    // const tableRow = document.createElement('tr');
     for (let i = 0; i < dataWords.length; i++) {
       const word = dataWords[i] as Iobj;
       const tableRow = document.createElement('tr');
@@ -150,15 +142,14 @@ export class Score extends BaseComponent {
     }
   }
 
-  sortColumn(columnName:string):void {
+  sortColumn(columnName: string): void {
     let colName = columnName;
     if (columnName === '% errors') {
       colName = columnName.replace(/% /g, '');
     }
 
-    const obj: any[] = this.tableData;
-
-    const dataType = typeof obj[0][colName];
+    const obj: never[] = this.tableData;
+    const dataType: string | number = typeof obj[0][colName];
 
     this.sortDirection = !this.sortDirection;
 
@@ -170,24 +161,32 @@ export class Score extends BaseComponent {
     this.renderTableData();
   }
 
-  sortNumberColumn(sort:boolean, columnName:string):void {
-    this.tableData = this.tableData.sort((p1:any, p2:any) => (sort ? p2[columnName] - p1[columnName] : p1[columnName] - p2[columnName]));
+  sortNumberColumn(sort: boolean, columnName: string): void {
+    this.tableData = this.tableData.sort((p1: never, p2: never) => (sort ? p2[columnName] - p1[columnName] : p1[columnName] - p2[columnName]));
   }
 
-  sortStringColor(sort:boolean, columnName:string):void {
-    this.tableData = this.tableData.sort((p1:any, p2:any) => {
+  sortStringColor(sort: boolean, columnName: string): void {
+    this.tableData = this.tableData.sort((p1: never, p2: never) => {
       if (sort) {
-        if (p1[columnName] > p2[columnName]) { return -1; }
-        if (p1[columnName] < p2[columnName]) { return 1; }
+        if (p1[columnName] > p2[columnName]) {
+          return -1;
+        }
+        if (p1[columnName] < p2[columnName]) {
+          return 1;
+        }
       } else {
-        if (p1[columnName] < p2[columnName]) { return -1; }
-        if (p1[columnName] > p2[columnName]) { return 1; }
+        if (p1[columnName] < p2[columnName]) {
+          return -1;
+        }
+        if (p1[columnName] > p2[columnName]) {
+          return 1;
+        }
       }
       return null;
     });
   }
 
-  resetScore():void {
+  resetScore(): void {
     this.resetBtn.addEventListener('click', () => {
       new AudioController().clickTOCard();
       for (let i = 0; i < localStorage.length; i++) {
@@ -204,11 +203,11 @@ export class Score extends BaseComponent {
     });
   }
 
-  removeScore():void {
+  removeScore(): void {
     this.element.remove();
   }
 
-  renderDifiicultWord():void {
+  renderDifiicultWord(): void {
     this.repeatWords.addEventListener('click', () => {
       const difficultWords: Iobj[] = [];
       this.tbody.innerHTML = '';
@@ -232,7 +231,11 @@ export class Score extends BaseComponent {
         this.repeatField.appendChild(this.noRepeatBlock);
       } else {
         difficultWords.forEach((key) => {
-          const newCard = new GameCard(key.word.toLowerCase(), key.translation, key.category);
+          const newCard = new GameCard(
+            key.word.toLowerCase(),
+            key.translation,
+            key.category,
+          );
           this.repeatField.appendChild(newCard.element);
         });
       }

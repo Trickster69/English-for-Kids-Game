@@ -31,36 +31,36 @@ export class AudioController {
     this.fail.currentTime = 0;
   }
 
-  clickMenu():void {
+  clickMenu(): void {
     this.headerMenu.play();
   }
 
-  clickSwitcher():void {
+  clickSwitcher(): void {
     this.headerSwitcher.currentTime = 0;
     this.headerSwitcher.play();
   }
 
-  mouseEnterCar():void {
+  mouseEnterCar(): void {
     this.mouseEnterCard.play();
   }
 
-  clickTOCard():void {
+  clickTOCard(): void {
     this.clickCard.play();
   }
 
-  successPlay():void {
+  successPlay(): void {
     this.success.play();
   }
 
-  failPlay():void {
+  failPlay(): void {
     this.fail.play();
   }
 
-  victoryPlay():void {
+  victoryPlay(): void {
     this.victory.play();
   }
 
-  gameOverPlay():void {
+  gameOverPlay(): void {
     this.gameOver.play();
   }
 }

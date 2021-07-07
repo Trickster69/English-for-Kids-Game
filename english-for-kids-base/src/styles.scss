@@ -1,16 +1,16 @@
 @font-face {
   font-family: Artemon;
-  src: url('./assets/fonts/Artemon.ttf');
+  src: url("./assets/fonts/Artemon.ttf");
 }
 
 @font-face {
   font-family: Countryhouse;
-  src: url('./assets/fonts/Countryhouse.ttf');
+  src: url("./assets/fonts/Countryhouse.ttf");
 }
 
 @font-face {
   font-family: WatercolorDemo;
-  src: url('./assets/fonts/WatercolorDemo.ttf');
+  src: url("./assets/fonts/WatercolorDemo.ttf");
 }
 
 * {
@@ -19,9 +19,8 @@
   box-sizing: border-box;
 }
 
-
 body {
-  background-image: url('./assets/img/bg1.jpg');
+  background-image: url("./assets/img/bg1.jpg");
   // background-size: cover;
   background-repeat: no-repeat;
   background-size: cover;

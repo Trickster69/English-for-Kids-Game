@@ -17,9 +17,8 @@ header {
   padding-top: 24px;
 }
 
-#menu_checkbox
-{
-    display: none;
+#menu_checkbox {
+  display: none;
 }
 
 label {
@@ -32,7 +31,6 @@ label {
   transform: translateY(-50%);
   transition: 0.3s ease transform;
   cursor: pointer;
-
 }
 
 .burger {
@@ -40,44 +38,38 @@ label {
   z-index: 3;
 }
 
-label div
-{
+label div {
   width: 8px;
   height: 6px;
   background-color: #143240;
   margin-left: 0;
   margin-bottom: 6px;
   border-radius: 4px;
-  transition: 0.3s ease width, 0.3s ease margin-left, 0.3s ease margin-bottom, 0.3s ease background-color;
+  transition: 0.3s ease width, 0.3s ease margin-left, 0.3s ease margin-bottom,
+    0.3s ease background-color;
 }
 
-
-label div:first-child
-{
-    width: 35px;
-    background-color: #f0d3ab;
+label div:first-child {
+  width: 35px;
+  background-color: #f0d3ab;
 }
 
-label div:nth-child(2)
-{
-    width: 28px;
-    background-color: #fc4953;
+label div:nth-child(2) {
+  width: 28px;
+  background-color: #fc4953;
 }
 
-label div:last-child
-{
+label div:last-child {
   width: 43px;
   margin-bottom: 0;
   background-color: #64b78b;
 }
 
-#menu_checkbox:checked + label
-{
-    transform: translateY(-50%) rotateZ(-90deg);
+#menu_checkbox:checked + label {
+  transform: translateY(-50%) rotateZ(-90deg);
 }
 
-#menu_checkbox:checked + label div
-{
+#menu_checkbox:checked + label div {
   width: 11px;
   height: 11px;
   border-radius: 50%;
@@ -118,8 +110,8 @@ label div:last-child
   right: 0;
   bottom: 0;
   background-color: #754c8f70;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border-radius: 34px;
 }
 
@@ -131,8 +123,8 @@ label div:last-child
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border-radius: 50%;
 }
 
@@ -142,7 +134,7 @@ label div:last-child
 }
 
 #switch_checkbox:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 #switch_checkbox:checked + .slider:before {
@@ -151,8 +143,9 @@ label div:last-child
   transform: translateX(26px);
 }
 
-.header__train-mode, .header__play-mode {
-  font-family: 'Countryhouse';
+.header__train-mode,
+.header__play-mode {
+  font-family: "Countryhouse";
   font-size: 26px;
 }
 
@@ -178,4 +171,3 @@ label div:last-child
     max-width: 100%;
   }
 }
-

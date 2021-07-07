@@ -65,18 +65,12 @@ export class GameCard extends BaseComponent {
 
     this.front.addEventListener('click', () => {
       if (store.playMode === 'false') {
-        this.playWord(this.element);
+        new Audio(`https://wooordhunt.ru/data/sound/sow/us/${this.element.classList[1].toLowerCase()}.mp3`).play();
       }
       if (store.startGame) {
         addPoint(this.element.classList[1], 'clicks');
-        // this.addClick(this.element, 'clicks');
       }
     });
-  }
-
-  playWord(element:HTMLElement):void {
-    const audio = element.classList[1].slice(0, 1).toLowerCase() + this.element.classList[1].slice(1);
-    new Audio(`https://wooordhunt.ru/data/sound/sow/us/${audio}.mp3`).play();
   }
 
   playMode():void {
@@ -90,7 +84,6 @@ export class GameCard extends BaseComponent {
     if (store.playMode === 'false') {
       this.gameDiscription.classList.remove('discription_hidden');
       this.element.classList.remove('play_card');
-      // this.playWord(this.element);
     }
   }
 }

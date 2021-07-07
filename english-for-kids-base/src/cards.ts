@@ -1,8 +1,16 @@
 import { ICards } from './components/Icards';
 
 const cards: [string[], ...ICards[][]] = [
-// const cards = [
-  ['animals', 'animals2', 'clothing', 'gastronomy', 'music', 'sport', 'toys', 'travel'],
+  [
+    'animals',
+    'animals2',
+    'clothing',
+    'gastronomy',
+    'music',
+    'sport',
+    'toys',
+    'travel',
+  ],
   [
     {
       category: 'animals',

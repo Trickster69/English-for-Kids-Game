@@ -11,7 +11,6 @@ import cardsObj from '../../cards';
 import { SuccessPoint } from '../Point/Point';
 import { LoosePage } from '../LoosePage/LoosePage';
 import { WinnerPage } from '../WinnerPage/WinnerPage';
-import { OverlayResult } from '../OverlayResult/OverlayResult';
 import { GameCard } from '../GameCard/GameCard';
 import { ICards } from '../Icards';
 import { addPoint } from '../../assets/Utils/AddPoint';
