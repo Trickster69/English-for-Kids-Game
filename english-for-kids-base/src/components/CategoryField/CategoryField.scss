@@ -1,6 +1,6 @@
 .categories {
   position: absolute;
-  margin-top: 150px;
+  margin-top: 120px;
   /* top: 50%; */
   left: 50%;
   transform: translateX(-50%);
@@ -29,25 +29,25 @@
 
 @media (max-width: 1035px) {
   .categories {
-    margin-top: 133px;
+    margin-top: 113px;
   }
 }
 
 @media (max-width: 960px) {
   .categories {
-      // top: 55%;
+    margin-top: 47px;
   }
 }
 
 @media (max-width: 733px) {
   .categories {
-    margin-top: 97px;
+    // margin-top: 60px;
   }
 }
 
 @media (max-width: 471px) {
   .categories {
-    margin-top: 77px;
+    // margin-top: 67px;
    }
 }
 

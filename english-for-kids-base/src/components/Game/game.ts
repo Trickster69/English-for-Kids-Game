@@ -16,6 +16,7 @@ import { GameCard } from '../GameCard/GameCard';
 import { ICards } from '../Icards';
 import { addPoint } from '../../assets/Utils/AddPoint';
 import { Score } from '../Stats/Stats';
+import { Footer } from '../Footer/Footer';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -24,6 +25,8 @@ export class Game extends BaseComponent {
 
   private readonly header: Header;
 
+  private readonly footer: Footer;
+
   private readonly navigation: Navigation;
 
   private readonly overlay: Overlay;
@@ -31,8 +34,6 @@ export class Game extends BaseComponent {
   private readonly audioController:AudioController;
 
   private readonly statistic: Score;
-
-  // checkbox: HTMLInputElement | null;
 
   private word: string | undefined;
 
@@ -43,9 +44,9 @@ export class Game extends BaseComponent {
     this.categoryFields = new CategoryField();
     this.element.appendChild(this.categoryFields.element);
     this.header = new Header();
+    this.footer = new Footer();
     this.navigation = new Navigation();
     this.statistic = new Score();
-    // this.checkbox = document.querySelector('#switch_checkbox');
     this.overlay = new Overlay();
     this.audioController = new AudioController();
     document.body.append(this.overlay.element);
@@ -55,11 +56,13 @@ export class Game extends BaseComponent {
   renderGame(images: string[]): void {
     this.categoryFields.clearCategoryField();
     const cards = images.map((img) => new CategoryCard(`${img}`));
-
+    this.element.appendChild(this.header.element);
+    this.element.appendChild(this.navigation.element);
     this.changePagetoMenu(cards as CategoryCard[]);
     this.renderCards(cards as CategoryCard[]);
     this.switchGameMode();
     this.startGame();
+    this.element.appendChild(this.footer.element);
   }
 
   startGame():void {
@@ -67,7 +70,6 @@ export class Game extends BaseComponent {
       if (store.btnStatus === 'Start') {
         store.startGame = true;
         store.btnStatus = 'Repeat';
-        /* TODO: fix to function */
         const index = cardsObj[0].indexOf(store.category as string);
         const arrAnimalsObjs = cardsObj[index + 1];
         const wordsArr = arrAnimalsObjs.map((key:ICards | undefined| string) => {
@@ -124,8 +126,6 @@ export class Game extends BaseComponent {
           this.element.appendChild(this.categoryFields.element);
         } else if (item.textContent === 'statistic') {
           store.category = 'statistic';
-          console.log('popal na staty');
-
           this.clearFields();
           this.statistic.repeatField.remove();
           this.statistic.getTableData();
@@ -199,7 +199,6 @@ export class Game extends BaseComponent {
     this.gameField.score.append(new SuccessPoint().addPoint('fail'));
     addPoint(store.word, 'wrong');
     this.deletePoints();
-    // console.log(store.word);
   }
 
   switchGameMode():void {
@@ -265,9 +264,6 @@ export class Game extends BaseComponent {
   }
 
   toggleMenu():void {
-    this.element.appendChild(this.header.element);
-    this.element.appendChild(this.navigation.element);
-
     this.header.burger.addEventListener('click', () => {
       this.navigation.element.classList.toggle('show');
       this.overlay.element.classList.toggle('overlay_active');

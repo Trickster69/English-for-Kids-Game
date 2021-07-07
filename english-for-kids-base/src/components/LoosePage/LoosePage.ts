@@ -29,8 +29,4 @@ export class LoosePage extends BaseComponent {
     `;
     this.element.appendChild(this.loose);
   }
-
-  get loose_element() {
-    return this.loose;
-  }
 }

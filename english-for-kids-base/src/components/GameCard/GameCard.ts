@@ -9,6 +9,8 @@ export class GameCard extends BaseComponent {
 
   front: HTMLDivElement;
 
+  discriptionBtn: HTMLDivElement;
+
   constructor(image:string, rusWord:string, category:string) {
     super('div', ['game-card', image]);
     this.front = document.createElement('div');
@@ -27,13 +29,13 @@ export class GameCard extends BaseComponent {
     discriptionName.classList.add('game-card__discription-name');
     discriptionName.textContent = image;
     this.gameDiscription.appendChild(discriptionName);
-    const discriptionBtn = document.createElement('div');
-    discriptionBtn.classList.add('game-card__discription-btn-back');
+    this.discriptionBtn = document.createElement('div');
+    this.discriptionBtn.classList.add('game-card__discription-btn-back');
     const imageDisctBtn = document.createElement('img');
     imageDisctBtn.src = 'https://img.icons8.com/material-outlined/24/4a90e2/reboot.png';
-    discriptionBtn.appendChild(imageDisctBtn);
+    this.discriptionBtn.appendChild(imageDisctBtn);
 
-    this.gameDiscription.appendChild(discriptionBtn);
+    this.gameDiscription.appendChild(this.discriptionBtn);
     const backCard = document.createElement('div');
     backCard.classList.add('game-card__back');
     backCard.innerHTML = `
@@ -47,8 +49,11 @@ export class GameCard extends BaseComponent {
     this.element.appendChild(backCard);
 
     this.element.addEventListener('mouseenter', () => new AudioController().mouseEnterCar());
+    this.flipCard();
+  }
 
-    discriptionBtn.addEventListener('click', () => {
+  flipCard():void {
+    this.discriptionBtn.addEventListener('click', () => {
       this.element.querySelector('.game-card__front')?.classList.add('flipped-front');
       this.element.querySelector('.game-card__back')?.classList.add('flipped-back');
     });
@@ -68,14 +73,6 @@ export class GameCard extends BaseComponent {
       }
     });
   }
-
-  // addClick(element:HTMLElement, operation:string): void {
-  //   const animal = element.classList[1].slice(0, 1).toUpperCase() + this.element.classList[1].slice(1);
-  //   const objRow = localStorage.getItem(animal as string);
-  //   const cont = JSON.parse(objRow as string);
-  //   ++cont[operation];
-  //   localStorage.setItem(animal, JSON.stringify(cont));
-  // }
 
   playWord(element:HTMLElement):void {
     const audio = element.classList[1].slice(0, 1).toLowerCase() + this.element.classList[1].slice(1);

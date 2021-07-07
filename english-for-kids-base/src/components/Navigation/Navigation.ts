@@ -25,10 +25,6 @@ export class Navigation extends BaseComponent {
     this.menuItems = this.element.querySelectorAll('li');
     this.selectNavigationItem();
 
-    // this.menuItems.forEach((item) => item.addEventListener('mouseenter', async () => {
-    //   await new AudioController().mouseEnterCar();
-    // }));
-
     this.menuItems.forEach((item) => item.addEventListener('click', () => {
       new AudioController().clickTOCard();
       this.element.classList.remove('show');

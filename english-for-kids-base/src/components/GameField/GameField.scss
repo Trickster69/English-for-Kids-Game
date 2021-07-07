@@ -1,6 +1,6 @@
 .game-cards-field {
   position: absolute;
-  margin-top: 100px;
+  margin-top: 46px;
   /* top: 50%; */
   left: 50%;
   transform: translateX(-50%);
@@ -21,6 +21,7 @@
 }
 .start:hover {
   background-color: #5aad31;
+  transform: scale(1.1);
 }
 
 .start_btn__active {
@@ -68,6 +69,7 @@
 @media (max-width: 885px) {
   .game-cards-field {
     max-width: 651px;
+    margin-top: 0px;
     // top: 90%;
   }
 
@@ -78,7 +80,7 @@
 
 @media (max-width: 569px) {
   .game-cards-field {
-    top: 0px;
+    // top: 0px;
    }
 }
 
