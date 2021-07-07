@@ -34,15 +34,26 @@ export class Header extends BaseComponent {
     this.burger = this.element.querySelector('.burger') as HTMLDivElement;
     this.burger.addEventListener('click', () => new AudioController().clickMenu());
     this.checkbox = this.element.querySelector('#switch_checkbox');
+    this.switchStoreMode();
+  }
+
+  switchStoreMode():void {
     this.checkbox?.addEventListener('change', () => {
       new AudioController().clickSwitcher();
       if (this.checkbox?.checked) {
+        this.changeColorForSwitch();
         store.playMode = 'true';
         store.startGame = false;
       } else {
+        this.changeColorForSwitch();
         store.playMode = 'false';
         store.startGame = false;
       }
     });
+  }
+
+  changeColorForSwitch():void {
+    this.element.querySelector('.header__play-mode')?.classList.toggle('disabled');
+    this.element.querySelector('.header__train-mode')?.classList.toggle('disabled');
   }
 }
