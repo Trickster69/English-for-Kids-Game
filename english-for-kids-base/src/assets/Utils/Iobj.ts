@@ -5,4 +5,5 @@ export interface Iobj {
   clicks: number;
   correct: number;
   wrong: number;
+  errors: number;
 }

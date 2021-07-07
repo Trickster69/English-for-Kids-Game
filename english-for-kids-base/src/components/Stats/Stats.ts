@@ -2,7 +2,7 @@ import { AudioController } from '../../assets/Utils/AudioController';
 import { BaseComponent } from '../../assets/Utils/BaseComponent';
 import { Iobj } from '../../assets/Utils/Iobj';
 import cards from '../../cards';
-import './Score.scss';
+import './Stats.scss';
 
 export class Score extends BaseComponent {
   private readonly table: HTMLTableElement;
@@ -91,6 +91,7 @@ export class Score extends BaseComponent {
         clicks: clicksWord as number,
         correct: correctWord as number,
         wrong: wrongWord as number,
+        errors: Math.floor(100 - ((correctWord / (clicksWord + wrongWord)) * 100)) || 0,
       };
 
       data.push(obj as Iobj);
@@ -114,22 +115,28 @@ export class Score extends BaseComponent {
         <td>${word.clicks}</td>
         <td>${word.correct}</td>
         <td>${word.wrong}</td>
-        <td>${Math.floor(100 - ((word.correct / (word.clicks + word.wrong)) * 100)) || 0}</td>
+        <td>${word.errors}</td>
       `;
       this.tbody.append(tableRow);
     }
   }
 
   sortColumn(columnName:string) {
+    let colName = columnName;
+    if (columnName === '% errors') {
+      colName = columnName.replace(/% /g, '');
+    }
+
     const obj: any[] = this.tableData;
 
-    const dataType = typeof obj[0][columnName];
+    const dataType = typeof obj[0][colName];
+
     this.sortDirection = !this.sortDirection;
 
     if (dataType === 'number') {
-      this.sortNumberColumn(this.sortDirection, columnName);
+      this.sortNumberColumn(this.sortDirection, colName);
     } else {
-      this.sortStringColor(this.sortDirection, columnName);
+      this.sortStringColor(this.sortDirection, colName);
     }
     this.loadTableData();
   }

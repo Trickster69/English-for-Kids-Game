@@ -3,7 +3,7 @@ import cards from './cards';
 import { Game } from './components/Game/game';
 import { Header } from './components/Header/Header';
 import { ICards } from './components/Icards';
-import { Score } from './components/Score/Score';
+import { Score } from './components/Stats/Stats';
 
 export class App {
   header: Header;
@@ -30,6 +30,7 @@ export class App {
           clicks: 0,
           correct: 0,
           wrong: 0,
+          errors: 0,
         };
         localStorage.setItem(obj.word, JSON.stringify(obj));
       }));

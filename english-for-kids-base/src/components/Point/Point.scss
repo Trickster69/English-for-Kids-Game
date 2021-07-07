@@ -1,7 +1,6 @@
-.success-point {
+.point {
   width: 50px;
   animation: dance-point 1s linear infinite 500ms;
-
 }
 
 @keyframes dance-point {
@@ -13,5 +12,17 @@
   }
   75% {
       transform: rotate(6deg);
+  }
+}
+
+@media (max-width: 569px) {
+  .point {
+    width: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .point {
+    width: 27px;
   }
 }

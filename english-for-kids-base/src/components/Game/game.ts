@@ -15,7 +15,7 @@ import { OverlayResult } from '../OverlayResult/OverlayResult';
 import { GameCard } from '../GameCard/GameCard';
 import { ICards } from '../Icards';
 import { addPoint } from '../../assets/Utils/AddPoint';
-import { Score } from '../Score/Score';
+import { Score } from '../Stats/Stats';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -183,11 +183,15 @@ export class Game extends BaseComponent {
     card.element.outerHTML = outer;
     store.trueWords?.push(clickWord);
     this.gameField.score.append(new SuccessPoint().addPoint('success'));
+    this.deletePoints();
     this.audioController.successPlay();
-
-    // const animal =
-    console.log(clickWord);
     addPoint(clickWord, 'correct');
+  }
+
+  deletePoints():void {
+    if (this.gameField.score.childNodes.length > 8) {
+      this.gameField.score.childNodes[0].remove();
+    }
   }
 
   failMatch():void {
@@ -195,7 +199,8 @@ export class Game extends BaseComponent {
     this.audioController.failPlay();
     this.gameField.score.append(new SuccessPoint().addPoint('fail'));
     addPoint(store.word, 'wrong');
-    console.log(store.word);
+    this.deletePoints();
+    // console.log(store.word);
   }
 
   switchGameMode():void {
