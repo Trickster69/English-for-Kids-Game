@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AudioController } from '../../assets/Utils/AudioController';
 import { BaseComponent } from '../../assets/Utils/BaseComponent';
+import { Iobj } from '../../assets/Utils/Iobj';
 import cards from '../../cards';
 import './Score.scss';
 
@@ -52,9 +53,10 @@ export class Score extends BaseComponent {
     this.element.append(this.repeatWords);
     // const animalCount = localStorage.length;
     this.resetScore();
-    this.tableData = this.getTableData();
-    console.log(this.getTableData());
-    this.loadTableData(this.getTableData());
+    this.tableData = [];
+    this.getTableData();
+    // console.log(this.getTableData());
+    // this.loadTableData(this.getTableData());
     this.sortDirection = false;
     // this.sortColumn('clicks');
     this.thead.querySelectorAll('th').forEach((elem) => {
@@ -69,8 +71,9 @@ export class Score extends BaseComponent {
     });
   }
 
-  getTableData():[] {
-    this.tableData = [];
+  // eslint-disable-next-line class-methods-use-this
+  getTableData() {
+    const data = [];
     for (let i = 0; i < localStorage.length; i++) {
       const currentWord = Object.keys(localStorage)[i];
       const tableRow = document.createElement('tr');
@@ -90,25 +93,19 @@ export class Score extends BaseComponent {
         correct: correctWord as number,
         wrong: wrongWord as number,
       };
-      interface Iobj {
-        word:string,
-        translation: string,
-        category: string,
-        clicks: number,
-        correct: number,
-        wrong: number
-      }
-      this.tableData.push(obj as Iobj);
+
+      data.push(obj as Iobj);
     }
-    return this.tableData;
+    this.tableData = data;
   }
 
-  loadTableData(tableData:any) {
+  loadTableData() {
     // const tableBody = this.tbody;
+    const dataWords = this.tableData;
     this.tbody.innerHTML = '';
     // const tableRow = document.createElement('tr');
-    // eslint-disable-next-line no-restricted-syntax
-    for (const word of tableData) {
+    for (let i = 0; i < dataWords.length; i++) {
+      const word = dataWords[i] as Iobj;
       const tableRow = document.createElement('tr');
       tableRow.classList.add('table_row');
       tableRow.innerHTML = `
@@ -125,9 +122,8 @@ export class Score extends BaseComponent {
   }
 
   sortColumn(columnName:string) {
-    const obj: any = this.getTableData();
+    const obj: any = this.tableData;
     const dataType = typeof obj[0][columnName];
-    console.log(dataType);
     this.sortDirection = !this.sortDirection;
 
     if (dataType === 'number') {
@@ -135,21 +131,21 @@ export class Score extends BaseComponent {
     } else {
       this.sortStringColor(this.sortDirection, columnName);
     }
-    this.loadTableData(this.tableData);
+    this.loadTableData();
   }
 
   sortNumberColumn(sort:boolean, columnName:string):void {
-    this.tableData = this.tableData.sort((p1:any, p2:any) => (sort ? p1[columnName] - p2[columnName] : p2[columnName] - p1[columnName]));
+    this.tableData = this.tableData.sort((p1:any, p2:any) => (sort ? p2[columnName] - p1[columnName] : p1[columnName] - p2[columnName]));
   }
 
   sortStringColor(sort:boolean, columnName:string):void {
     this.tableData = this.tableData.sort((p1:any, p2:any) => {
       if (sort) {
-        if (p1[columnName] < p2[columnName]) { return -1; }
-        if (p1[columnName] > p2[columnName]) { return 1; }
-      } else {
         if (p1[columnName] > p2[columnName]) { return -1; }
         if (p1[columnName] < p2[columnName]) { return 1; }
+      } else {
+        if (p1[columnName] < p2[columnName]) { return -1; }
+        if (p1[columnName] > p2[columnName]) { return 1; }
       }
       return null;
     });

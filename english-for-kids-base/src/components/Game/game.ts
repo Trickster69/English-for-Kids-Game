@@ -125,8 +125,9 @@ export class Game extends BaseComponent {
         } else if (item.textContent === 'statistic') {
           store.category = 'statistic';
           this.clearFields();
-          // this.statistic.renderTable();
-          this.element.appendChild(new Score().element);
+          this.statistic.getTableData();
+          this.statistic.loadTableData();
+          this.element.appendChild(this.statistic.element);
         } else {
           // this.statistic.removeScore();
           // this.gameField.clearGameField();
