@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AudioController } from '../../assets/Utils/AudioController';
 import { BaseComponent } from '../../assets/Utils/BaseComponent';
 import { Iobj } from '../../assets/Utils/Iobj';
@@ -122,7 +121,8 @@ export class Score extends BaseComponent {
   }
 
   sortColumn(columnName:string) {
-    const obj: any = this.tableData;
+    const obj: any[] = this.tableData;
+
     const dataType = typeof obj[0][columnName];
     this.sortDirection = !this.sortDirection;
 
@@ -150,6 +150,28 @@ export class Score extends BaseComponent {
       return null;
     });
   }
+
+  resetScore():void {
+    this.resetBtn.addEventListener('click', () => {
+      new AudioController().clickTOCard();
+      for (let i = 0; i < localStorage.length; i++) {
+        const currentWord = Object.keys(localStorage)[i];
+        const currentStr = localStorage.getItem(currentWord);
+        const curObj = JSON.parse(currentStr as string);
+        curObj.clicks = 0;
+        curObj.correct = 0;
+        curObj.wrong = 0;
+        localStorage.setItem(currentWord as string, JSON.stringify(curObj));
+      }
+      this.getTableData();
+      this.loadTableData();
+    });
+  }
+
+  removeScore():void {
+    this.element.remove();
+  }
+}
 
   // renderTable():void {
   //   this.tbody.innerHTML = '';
@@ -180,25 +202,3 @@ export class Score extends BaseComponent {
   //     this.tbody.append(tableRow);
   //   }
   // }
-
-  resetScore():void {
-    this.resetBtn.addEventListener('click', () => {
-      new AudioController().clickTOCard();
-      console.log('ckick score reser');
-      for (let i = 0; i < localStorage.length; i++) {
-        const currentWord = Object.keys(localStorage)[i];
-        const currentStr = localStorage.getItem(currentWord);
-        const curObj = JSON.parse(currentStr as string);
-        curObj.clicks = 0;
-        curObj.correct = 0;
-        curObj.wrong = 0;
-        localStorage.setItem(currentWord as string, JSON.stringify(curObj));
-      }
-      // this.renderTable();
-    });
-  }
-
-  removeScore():void {
-    this.element.remove();
-  }
-}
