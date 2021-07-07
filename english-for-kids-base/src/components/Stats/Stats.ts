@@ -232,7 +232,7 @@ export class Score extends BaseComponent {
         this.repeatField.appendChild(this.noRepeatBlock);
       } else {
         difficultWords.forEach((key) => {
-          const newCard = new GameCard(key.word, key.translation, key.category);
+          const newCard = new GameCard(key.word.toLowerCase(), key.translation, key.category);
           this.repeatField.appendChild(newCard.element);
         });
       }

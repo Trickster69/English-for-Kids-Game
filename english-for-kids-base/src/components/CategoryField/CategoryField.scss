@@ -1,18 +1,15 @@
 .categories {
   position: absolute;
-  top: 50%;
+  margin-top: 150px;
+  /* top: 50%; */
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  // margin: 50px;
+  transform: translateX(-50%);
   display: flex;
   flex-wrap: wrap;
   max-width: 1200px;
   width: 100%;
   gap: 52px;
   justify-content: center;
-
-
-
   // display: none;
 }
 
@@ -32,30 +29,30 @@
 
 @media (max-width: 1035px) {
   .categories {
-      top: 60%;
+    margin-top: 133px;
   }
 }
 
 @media (max-width: 960px) {
   .categories {
-      top: 55%;
+      // top: 55%;
   }
 }
 
 @media (max-width: 733px) {
   .categories {
-    top: 74%;
+    margin-top: 97px;
   }
 }
 
 @media (max-width: 471px) {
   .categories {
-    top: 60%;
+    margin-top: 77px;
    }
 }
 
 @media (max-width: 351px) {
   .categories {
-    top: 155%;
+    // top: 155%;
    }
 }

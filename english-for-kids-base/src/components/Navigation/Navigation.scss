@@ -1,7 +1,7 @@
 .menu {
   // background-color: red;
   width: 355px;
-  height: 100vh;
+  height: 800px;
   position: absolute;
   top: 0;
   z-index: 2;
@@ -12,28 +12,22 @@
 }
 
 .menu ul {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  // left: 50%;
+  margin-top: 53px;
   margin-left: 33px;
-  transform: translateY(-50%);
-
 }
 
 .menu li {
   color: white;
   font-family: "WatercolorDemo";
-  font-size: 15px;
+  font-size: 14px;
   list-style-type: none;
-  padding-bottom: 19px;
+  padding-bottom: 8px;
   transition: 0.2s ease-in-out;
 }
 
 .menu .statistic {
-  position: absolute;
   color: #673ab7;
-  bottom: -13%;
+  margin-top: 33px;
 }
 
 .menu .active_li {
@@ -49,3 +43,12 @@
   left: 0;
 }
 
+@media (max-width:600px) {
+  .menu  {
+    width: 285px;
+    height: 652px;
+  }
+  .menu li {
+    font-size: 11px;
+  }
+}

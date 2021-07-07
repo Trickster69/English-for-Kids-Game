@@ -74,14 +74,11 @@
   margin: 0 auto;
   flex-wrap: wrap;
   gap: 16px;
-  width: 80%;
+  max-width: 1000px;
   position: relative;
 }
 
 
-.table_head td {
-  // border: 1px solid black;
-}
 
 td {
   text-align: center;
@@ -91,17 +88,13 @@ td {
   margin: 0 auto;
 }
 
-.no-repeat__image {
-
-}
-
 .no-repeat__image img {
   width: 100%;
 }
 
 .no-repeat__text {
     font-family: "Countryhouse";
-    font-size: 36px;
+    font-size: 40px;
     color: #3f51b5;
     box-sizing: border-box;
     position: absolute;
@@ -109,4 +102,77 @@ td {
     left: 50%;
     transform: translate(-50%);
 }
+@media (max-width:1200px) {
+  .no-repeat__text {
+    font-size: 32px;
+  }
+}
+@media (max-width:960px) {
+  .repeat-field {
+    max-width: 600px;
+  }
+  .no-repeat__text {
+    font-size: 25px;
+  }
+}
+@media (max-width:600px) {
+  .repeat_btn {
+    width: 160px;
+    right: 27%;
+  }
+  .reset_btn {
+    width: 60px;
+    left: 74%;
+  }
+  .score_btn {
+    font-size: 8px;
+    height: 32px;
+  }
+  .table {
+    font-size: 17px;
+    margin-top: 30px;
+  }
+  .table_head {
+    font-size: 19px;
+  }
+  .no-repeat__text {
+    font-size: 18px;
+  }
+}
+@media (max-width:440px) {
+  .repeat_btn {
+    width: 160px;
+    right: 27%;
+  }
+  .reset_btn {
+    width: 60px;
+    left: 74%;
+  }
+  .score_btn {
+    font-size: 6px;
+    height: 32px;
+  }
+  .table {
+    font-size: 14px;
+    margin-top: 29px;
+  }
+  .table_head {
+    font-size: 16px;
+  }
+  .no-repeat__text {
+    font-size: 14px;
+  }
+}
+@media (max-width:360px) {
+  .table {
+    font-size: 11px;
+    margin-top: 27px;
+  }
+  .table_head {
+    font-size: 14px;
+  }
 
+  .no-repeat__text {
+    font-size: 13px;
+  }
+}
