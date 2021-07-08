@@ -16,6 +16,7 @@ import { ICards } from '../Icards';
 import { addPoint } from '../../assets/Utils/AddPoint';
 import { Score } from '../Stats/Stats';
 import { Footer } from '../Footer/Footer';
+import { LoginField } from '../LoginField/LoginField';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -34,6 +35,8 @@ export class Game extends BaseComponent {
 
   private readonly statistic: Score;
 
+  private readonly loginField: LoginField;
+
   private word: string | undefined;
 
   constructor() {
@@ -47,6 +50,7 @@ export class Game extends BaseComponent {
     this.navigation = new Navigation();
     this.statistic = new Score();
     this.overlay = new Overlay();
+    this.loginField = new LoginField();
     this.audioController = new AudioController();
     document.body.append(this.overlay.element);
     this.toggleMenu();
@@ -130,6 +134,11 @@ export class Game extends BaseComponent {
           this.statistic.getTableData();
           this.statistic.renderTableData();
           this.element.appendChild(this.statistic.element);
+        } else if (item.textContent === 'login') {
+          this.element.appendChild(this.loginField.element);
+          this.loginField.overlay.element.addEventListener('click', () => {
+            this.loginField.element.remove();
+          });
         } else {
           this.clearFields();
           this.gameField.renderGameCards(item.textContent as string);
@@ -220,6 +229,8 @@ export class Game extends BaseComponent {
         });
       } else if (store.category === 'statistic') {
         return;
+      } else if (store.category === 'login') {
+        return;
       } else {
         store.playMode = 'false';
         this.newFieldRender(store.category);
@@ -255,9 +266,10 @@ export class Game extends BaseComponent {
     }
   }
 
-  closeOverlayResult(resultpage: LoosePage | WinnerPage): void {
+  closeOverlayResult(resultpage: LoosePage | WinnerPage | LoginField): void {
     resultpage.overlay.element.addEventListener('click', () => {
       resultpage.element.remove();
+      this.loginField.element.remove();
       this.newFieldRender(store.category);
     });
   }

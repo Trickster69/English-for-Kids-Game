@@ -19,6 +19,7 @@ export class Navigation extends BaseComponent {
         <li>toys</li>
         <li>travel</li>
         <li class="statistic">statistic</li>
+        <li class="login">login</li>
       </ul>
     `;
     this.menuItems = this.element.querySelectorAll('li');
