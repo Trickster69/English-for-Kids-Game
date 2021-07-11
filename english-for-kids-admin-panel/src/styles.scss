@@ -28,4 +28,570 @@ body {
   background-attachment: fixed;
 }
 
+/*    HEADER ADMIN    */
+$border: polygon(
+    3% 0,
+    7% 1%,
+    11% 0%,
+    16% 2%,
+    20% 0,
+    23% 2%,
+    28% 2%,
+    32% 1%,
+    35% 1%,
+    39% 3%,
+    41% 1%,
+    45% 0%,
+    47% 2%,
+    50% 2%,
+    53% 0,
+    58% 2%,
+    60% 2%,
+    63% 1%,
+    65% 0%,
+    67% 2%,
+    69% 2%,
+    73% 1%,
+    76% 1%,
+    79% 0,
+    82% 1%,
+    85% 0,
+    87% 1%,
+    89% 0,
+    92% 1%,
+    96% 0,
+    98% 3%,
+    99% 3%,
+    99% 6%,
+    100% 11%,
+    98% 15%,
+    100% 21%,
+    99% 28%,
+    100% 32%,
+    99% 35%,
+    99% 40%,
+    100% 43%,
+    99% 48%,
+    100% 53%,
+    100% 57%,
+    99% 60%,
+    100% 64%,
+    100% 68%,
+    99% 72%,
+    100% 75%,
+    100% 79%,
+    99% 83%,
+    100% 86%,
+    100% 90%,
+    99% 94%,
+    99% 98%,
+    95% 99%,
+    92% 99%,
+    89% 100%,
+    86% 99%,
+    83% 100%,
+    77% 99%,
+    72% 100%,
+    66% 98%,
+    62% 100%,
+    59% 99%,
+    54% 99%,
+    49% 100%,
+    46% 98%,
+    43% 100%,
+    40% 98%,
+    38% 100%,
+    35% 99%,
+    31% 100%,
+    28% 99%,
+    25% 99%,
+    22% 100%,
+    19% 99%,
+    16% 100%,
+    13% 99%,
+    10% 99%,
+    7% 100%,
+    4% 99%,
+    2% 97%,
+    1% 97%,
+    0% 94%,
+    1% 89%,
+    0% 84%,
+    1% 81%,
+    0 76%,
+    0 71%,
+    1% 66%,
+    0% 64%,
+    0% 61%,
+    0% 59%,
+    1% 54%,
+    0% 49%,
+    1% 45%,
+    0% 40%,
+    1% 37%,
+    0% 34%,
+    1% 29%,
+    0% 23%,
+    2% 20%,
+    1% 17%,
+    1% 13%,
+    0 10%,
+    1% 6%,
+    1% 3%
+  );
 
+.header-admin {
+  font-family: Countryhouse;
+  font-size: 25px;
+  color: #673ab7;
+  height: 64px;
+  background: rgba(145, 188, 145, 0.3);
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 24%);
+  padding: 0 60px;
+  display: flex;
+  justify-content: space-between;
+  line-height: 64px;
+}
+
+.header-admin__routing-pages {
+  display: table-cell;
+  vertical-align: middle;
+  width: 200px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.header-admin__category-btn, .header-admin__words-btn, .header-admin__logout {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.header-admin__category-btn:hover, .header-admin__words-btn:hover, .header-admin__logout:hover {
+  transform: scale(1.1);
+}
+
+.header-admin__logout {
+  color: #de6a45;
+}
+/*    /HEADER ADMIN    */
+
+
+
+/*    admin-category-field    */
+.admin-category-field {
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 52px;
+  justify-content: center;
+}
+/*    admin-category-field    */
+
+
+
+/*    new card    */
+.admin-new-category-card {
+  display: none;
+  position: relative;
+  width: 360px;
+  height: 244px;
+  background-color: rgba(24, 23, 23, 0.144);
+  clip-path: $border;
+}
+
+.admin-new-card__title {
+  font-size: 26px;
+  padding-top: 40px;
+  text-align: center;
+  font-family: 'Countryhouse';
+}
+
+.admin-new-card__button:before {
+  content: "+";
+  font-weight: 1000;
+  text-align: center;
+  font-family: "Countryhouse";
+  font-size: 63px;
+  line-height: 145%;
+  color: #331d43;
+  opacity: 0.8;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  border: 3px solid rgb(88 88 88);
+  transition: 0.2s ease-out;
+  clip-path: $border;
+}
+
+.admin-new-card__button:hover:before {
+  cursor: pointer;
+  content: attr(title);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 154%;
+  opacity: 1;
+  color: #400a55;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  padding: 0px 20px;
+  width: 200px;
+  height: 200px;
+  background: rgb(68 163 181 / 10%);
+  border: 2px solid rgba(252, 252, 252, 0.3);
+}
+.admin-new-card__button:hover .admin-new-card__title {
+  display: none;
+}
+
+/*    /new card    */
+
+
+
+/*    CATEGORY CARD   */
+.admin-category-card__review-block {
+  display: block;
+}
+.hide_review {
+  display: none;
+}
+.admin-category-card {
+  display: none;
+  position: relative;
+  width: 360px;
+  height: 244px;
+  background-color: rgb(103 58 183 / 46%);
+  clip-path: $border;
+}
+
+.admin-category-card__title {
+  font-size: 13px;
+  font-family: 'WatercolorDemo';
+  color: #f0f6f7;
+  text-align: center;
+  margin-top: 50px;
+}
+
+
+.close-btn_admin {
+  position: absolute;
+  top: 11px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.close-btn_admin:hover {
+  opacity: 1;
+  transform: scale(1.07);
+}
+.close-btn_admin:before, .close-btn_admin:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 4px;
+  background-color: #585858;
+}
+.close-btn_admin:before {
+  transform: rotate(45deg);
+}
+.close-btn_admin:after {
+  transform: rotate(-45deg);
+}
+
+.admin-category-card__words-count {
+  text-align: center;
+  font-family: 'Countryhouse';
+  font-size: 40px;
+  margin-top: 10px;
+}
+
+#word-count {
+  font-weight: 800;
+}
+
+.admin-category-card__btns {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+}
+
+.category_btn {
+  cursor: pointer;
+  border: 1px solid;
+  color: #ffc107;
+  outline: none;
+  padding: 0 10px;
+  clip-path: $border;
+  font-family: 'Artemon';
+  font-size: 29px;
+  height: 40px;
+  background: none;
+  transition: 0.2s;
+}
+
+.category_btn:hover {
+  transform: scale(1.1);
+}
+
+.admin-category-card__change-block {
+  display: block;
+}
+.hide_change {
+  display: none;
+}
+
+.form_create-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.category_admin-input {
+  height: 37px;
+  font-family: 'Artemon';
+  font-size: 28px;
+  letter-spacing: 5px;
+  border: none;
+  border-radius: 5%;
+  outline: none;
+}
+
+.new-card_cancel {
+  color: #c53935;
+}
+
+.new-card_create {
+  color: green;
+}
+/*    /CATEGORY CARD   */
+
+
+
+
+
+
+/*    new word card   */
+.admin-new-word-card {
+  position: relative;
+  width: 310px;
+  height: 410px;
+  background-color: rgba(24, 23, 23, 0.144);
+  clip-path: $border;
+}
+/*    new word card   */
+
+
+
+/*    WORD CARD   */
+/*Main page card*/
+.admin-word-card__main-card {
+  display: none;
+}
+.admin-word-card {
+  clip-path: $border;
+  width: 310px;
+  height: 410px;
+  background-color: #00805c82;
+  position: relative;
+  padding: 20px 0px 0px 20px;
+}
+
+.word_normal-text {
+  font-weight: normal;
+}
+
+.word_bold-text {
+  font-family: "Countryhouse";
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.admin-word-car__image {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.admin-word-car__image img {
+  width: 100%;
+}
+
+.admin-word-car__image__change-btn {
+  height: 34px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  width: 200px;
+  background-color: #ffc107;
+  position: relative;
+  font-family: 'WATERCOLORDEMO';
+  font-size: 8px;
+  left: 50%;
+  transform: translateX(-56%);
+  clip-path: $border;
+  transition: 0.2s;
+}
+.admin-word-car__image__change-btn:hover {
+  background-color: #ff9c07;
+}
+/*Main page card*/
+
+/*Change page CArd*/
+.admin-word-card__change-card {
+  display: block;
+}
+.input_new-word {
+  font-family: 'Countryhouse';
+  height: 32px;
+  width: 82%;
+  color: ghostwhite;
+  outline: none;
+  margin-top: 38px;
+  font-size: 21px;
+  background-color: inherit;
+  /* border-bottom: 2px solid black; */
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+.label {
+  color: #0A4080;
+  top: 39%;
+  width: auto;
+  display: block;
+  margin-top: 20px;
+  /* width: 30px; */
+  height: 20px;
+  /* transform: translateY(-50%); */
+  transition: 0.3s ease transform;
+  cursor: pointer;
+}
+
+.new_sound, .new_image {
+  font-family: 'Countryhouse';
+  font-size: 25px;
+}
+
+.change-word_btn {
+  margin-top: 20px;
+  height: 45px;
+  width: 40%;
+  clip-path: $border;
+  border: none;
+  outline: none;
+  font-size: 8px;
+  font-family: 'WatercolorDemo';
+  color: ghostwhite;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit_change-word {
+  background-color: #aaf74dbf;
+}
+
+.cancel_change-word {
+  background-color: #fa4923d6;
+}
+
+.submit_change-word:hover {
+  background-color: #1cf81c;
+}
+
+.cancel_change-word:hover {
+  background-color: #f31212;
+}
+/*Change page CArd*/
+/*    /WORD CARD   */
+.sound-input::before {
+  content: 'Select sound';
+}
+.image-input::before {
+  content: 'Select image';
+}
+.custom-file-input::-webkit-file-upload-button {
+  display: none;
+}
+.custom-file-input::before {
+  display: inline-block;
+  background-color: #E0B851;
+  margin-right: 20px;
+  color: #554362;
+  font-family: 'Countryhouse';
+  padding: 5px 4px;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  clip-path: $border;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+
+
+
+.select-category-word__menu-btn {
+  background-color: #2f4080;
+  color: white;
+  border-radius: 42%;
+  font-family: 'WatercolorDemo';
+  border: none;
+  font-size: 8px;
+  cursor: pointer;
+  padding:10px;
+  margin-top:20px;
+  clip-path: $border;
+  transition: 0.3s;
+}
+
+.select-category-word__menu-btn:hover {
+  background-color: #469cac;
+}
+
+.select-category-word {
+  position: absolute;
+  left: 85px;
+  top: 50px;
+  z-index: 5;
+  display: inline-block;
+
+}
+.select-category-word__items {
+  display: none;
+  background-color: #2f4080;
+  min-width: 200px;
+  clip-path: $border;
+}
+.select-category-word__items div {
+  color: white;
+  font-family: Countryhouse;
+  transition: 0.2s;
+  cursor: pointer;
+  padding: 20px;
+  text-decoration: none;
+  display: block;
+}
+
+.select-category-word__items div:hover {
+  background-color: #102881;
+}
+.select-category-word:hover .select-category-word__items {
+  display: block;
+}

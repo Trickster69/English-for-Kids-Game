@@ -9,7 +9,7 @@ export class Header extends BaseComponent {
   burger: HTMLDivElement;
 
   constructor() {
-    super('header');
+    super('header', ['header']);
     this.element.innerHTML = `
       <div class="header__container">
         <div class="header__item">
