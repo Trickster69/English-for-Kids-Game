@@ -1,0 +1,147 @@
+/*    WORD CARD   */
+/*Main page card*/
+.admin-word-card__main-card {
+  display: none;
+}
+.admin-word-card {
+  clip-path: $border;
+  width: 310px;
+  height: 410px;
+  background-color: #00805c82;
+  position: relative;
+  padding: 20px 0px 0px 20px;
+}
+
+.word_normal-text {
+  font-weight: normal;
+}
+
+.word_bold-text {
+  font-family: "Countryhouse";
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.admin-word-car__image {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.admin-word-car__image img {
+  width: 100%;
+}
+
+.admin-word-car__image__change-btn {
+  height: 34px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  width: 200px;
+  background-color: #ffc107;
+  position: relative;
+  font-family: 'WATERCOLORDEMO';
+  font-size: 8px;
+  left: 50%;
+  transform: translateX(-56%);
+  clip-path: $border;
+  transition: 0.2s;
+}
+.admin-word-car__image__change-btn:hover {
+  background-color: #ff9c07;
+}
+/*Main page card*/
+
+/*Change page CArd*/
+.admin-word-card__change-card {
+  display: block;
+}
+.input_new-word {
+  font-family: 'Countryhouse';
+  height: 32px;
+  width: 82%;
+  color: ghostwhite;
+  outline: none;
+  margin-top: 38px;
+  font-size: 21px;
+  background-color: inherit;
+  /* border-bottom: 2px solid black; */
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+.label {
+  color: #0A4080;
+  top: 39%;
+  width: auto;
+  display: block;
+  margin-top: 20px;
+  /* width: 30px; */
+  height: 20px;
+  /* transform: translateY(-50%); */
+  transition: 0.3s ease transform;
+  cursor: pointer;
+}
+
+.new_sound, .new_image {
+  font-family: 'Countryhouse';
+  font-size: 25px;
+}
+
+.change-word_btn {
+  margin-top: 20px;
+  height: 45px;
+  width: 40%;
+  clip-path: $border;
+  border: none;
+  outline: none;
+  font-size: 8px;
+  font-family: 'WatercolorDemo';
+  color: ghostwhite;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit_change-word {
+  background-color: #aaf74dbf;
+}
+
+.cancel_change-word {
+  background-color: #fa4923d6;
+}
+
+.submit_change-word:hover {
+  background-color: #1cf81c;
+}
+
+.cancel_change-word:hover {
+  background-color: #f31212;
+}
+/*Change page CArd*/
+/*    /WORD CARD   */
+.sound-input::before {
+  content: 'Select sound';
+}
+.image-input::before {
+  content: 'Select image';
+}
+.custom-file-input::-webkit-file-upload-button {
+  display: none;
+}
+.custom-file-input::before {
+  display: inline-block;
+  background-color: #E0B851;
+  margin-right: 20px;
+  color: #554362;
+  font-family: 'Countryhouse';
+  padding: 5px 4px;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  clip-path: $border;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}

@@ -1,0 +1,121 @@
+/*    CATEGORY CARD   */
+.admin-category-card__review-block {
+  display: block;
+}
+.hide_review {
+  display: none;
+}
+.admin-category-card {
+  display: none;
+  position: relative;
+  width: 360px;
+  height: 244px;
+  background-color: rgb(103 58 183 / 46%);
+  clip-path: $border;
+}
+
+.admin-category-card__title {
+  font-size: 13px;
+  font-family: 'WatercolorDemo';
+  color: #f0f6f7;
+  text-align: center;
+  margin-top: 50px;
+}
+
+
+.close-btn_admin {
+  position: absolute;
+  top: 11px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.close-btn_admin:hover {
+  opacity: 1;
+  transform: scale(1.07);
+}
+.close-btn_admin:before, .close-btn_admin:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 4px;
+  background-color: #585858;
+}
+.close-btn_admin:before {
+  transform: rotate(45deg);
+}
+.close-btn_admin:after {
+  transform: rotate(-45deg);
+}
+
+.admin-category-card__words-count {
+  text-align: center;
+  font-family: 'Countryhouse';
+  font-size: 40px;
+  margin-top: 10px;
+}
+
+#word-count {
+  font-weight: 800;
+}
+
+.admin-category-card__btns {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+}
+
+.category_btn {
+  cursor: pointer;
+  border: 1px solid;
+  color: #ffc107;
+  outline: none;
+  padding: 0 10px;
+  clip-path: $border;
+  font-family: 'Artemon';
+  font-size: 29px;
+  height: 40px;
+  background: none;
+  transition: 0.2s;
+}
+
+.category_btn:hover {
+  transform: scale(1.1);
+}
+
+.admin-category-card__change-block {
+  display: block;
+}
+.hide_change {
+  display: none;
+}
+
+.form_create-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.category_admin-input {
+  height: 37px;
+  font-family: 'Artemon';
+  font-size: 28px;
+  letter-spacing: 5px;
+  border: none;
+  border-radius: 5%;
+  outline: none;
+}
+
+.new-card_cancel {
+  color: #c53935;
+}
+
+.new-card_create {
+  color: green;
+}
+/*    /CATEGORY CARD   */

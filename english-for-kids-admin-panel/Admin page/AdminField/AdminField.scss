@@ -1,0 +1,133 @@
+.admin-category-field {
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 52px;
+  justify-content: center;
+}
+
+/*Category BTN*/
+.select-category-word__menu-btn {
+  background-color: #2f4080;
+  color: white;
+  border-radius: 42%;
+  font-family: 'WatercolorDemo';
+  border: none;
+  font-size: 8px;
+  cursor: pointer;
+  padding:10px;
+  margin-top:20px;
+  clip-path: $border;
+  transition: 0.3s;
+}
+
+.select-category-word__menu-btn:hover {
+  background-color: #469cac;
+}
+
+.select-category-word {
+  position: absolute;
+  left: 85px;
+  top: 50px;
+  z-index: 5;
+  display: inline-block;
+
+}
+.select-category-word__items {
+  display: none;
+  background-color: #2f4080;
+  min-width: 200px;
+  clip-path: $border;
+}
+.select-category-word__items div {
+  color: white;
+  font-family: Countryhouse;
+  transition: 0.2s;
+  cursor: pointer;
+  padding: 20px;
+  text-decoration: none;
+  display: block;
+}
+
+.select-category-word__items div:hover {
+  background-color: #102881;
+}
+.select-category-word:hover .select-category-word__items {
+  display: block;
+}
+
+/*    new card    */
+.admin-new-category-card {
+  display: none;
+  position: relative;
+  width: 360px;
+  height: 244px;
+  background-color: rgba(24, 23, 23, 0.144);
+  clip-path: $border;
+}
+
+.admin-new-card__title {
+  font-size: 26px;
+  padding-top: 40px;
+  text-align: center;
+  font-family: 'Countryhouse';
+}
+
+.admin-new-card__button:before {
+  content: "+";
+  font-weight: 1000;
+  text-align: center;
+  font-family: "Countryhouse";
+  font-size: 63px;
+  line-height: 145%;
+  color: #331d43;
+  opacity: 0.8;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  border: 3px solid rgb(88 88 88);
+  transition: 0.2s ease-out;
+  clip-path: $border;
+}
+
+.admin-new-card__button:hover:before {
+  cursor: pointer;
+  content: attr(title);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 154%;
+  opacity: 1;
+  color: #400a55;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  padding: 0px 20px;
+  width: 200px;
+  height: 200px;
+  background: rgb(68 163 181 / 10%);
+  border: 2px solid rgba(252, 252, 252, 0.3);
+}
+.admin-new-card__button:hover .admin-new-card__title {
+  display: none;
+}
+/*    /new card    */
+
+
+/*    new word card   */
+.admin-new-word-card {
+  position: relative;
+  width: 310px;
+  height: 410px;
+  background-color: rgba(24, 23, 23, 0.144);
+  clip-path: $border;
+}
+/*    new word card   */
