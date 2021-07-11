@@ -7,4 +7,5 @@ export default {
   trueWords: [] as string[],
   wrongAnswers: 0 as number,
   startGame: false as boolean,
+  login: false,
 };

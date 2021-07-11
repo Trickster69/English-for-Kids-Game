@@ -16,7 +16,11 @@ import { ICards } from '../Icards';
 import { addPoint } from '../../assets/Utils/AddPoint';
 import { Score } from '../Stats/Stats';
 import { Footer } from '../Footer/Footer';
+// eslint-disable-next-line import/no-cycle
 import { LoginField } from '../LoginField/LoginField';
+import { AdminPageRender } from '../../../Admin page/AdminPageRender/AdminPageRender';
+import { AdminHeader } from '../../../Admin page/AdminHeader/AdminHeader';
+import { AdminField } from '../../../Admin page/AdminField/AdminField';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -39,6 +43,11 @@ export class Game extends BaseComponent {
 
   private word: string | undefined;
 
+  adminHeader: AdminHeader;
+
+  // adminPageRender : AdminPageRender;
+  adminField: AdminField;
+
   constructor() {
     super();
     this.element.style.height = '0';
@@ -47,6 +56,7 @@ export class Game extends BaseComponent {
     this.element.appendChild(this.categoryFields.element);
     this.header = new Header();
     this.footer = new Footer();
+    this.footer.element.style.position = 'absolute';
     this.navigation = new Navigation();
     this.statistic = new Score();
     this.overlay = new Overlay();
@@ -54,6 +64,11 @@ export class Game extends BaseComponent {
     this.audioController = new AudioController();
     document.body.append(this.overlay.element);
     this.toggleMenu();
+
+    this.adminHeader = new AdminHeader(this.element);
+    this.adminField = new AdminField();
+    this.renderAdminPage();
+    // this.adminPageRender = new AdminPageRender();
   }
 
   renderGame(images: string[]): void {
@@ -136,9 +151,11 @@ export class Game extends BaseComponent {
           this.element.appendChild(this.statistic.element);
         } else if (item.textContent === 'login') {
           this.element.appendChild(this.loginField.element);
+          this.loginField.validForm(this.element);
           this.loginField.overlay.element.addEventListener('click', () => {
             this.loginField.element.remove();
           });
+          this.renderAdminPage();
         } else {
           this.clearFields();
           this.gameField.renderGameCards(item.textContent as string);
@@ -146,6 +163,12 @@ export class Game extends BaseComponent {
         }
       });
     });
+  }
+
+  renderAdminPage(): void {
+    this.footer.element.style.position = 'relative';
+    document.body.appendChild(this.adminHeader.element);
+    document.body.appendChild(this.adminField.element);
   }
 
   clearFields(): void {

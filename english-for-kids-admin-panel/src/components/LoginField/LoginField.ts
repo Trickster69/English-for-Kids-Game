@@ -1,6 +1,7 @@
 import { AudioController } from '../../assets/Utils/AudioController';
 import { BaseComponent } from '../../assets/Utils/BaseComponent';
 import { OverlayResult } from '../OverlayResult/OverlayResult';
+import store from '../store';
 import './LoginField.scss';
 
 export class LoginField extends BaseComponent {
@@ -25,10 +26,10 @@ export class LoginField extends BaseComponent {
         <div class="login-field__title">Login</div>
         <form class="form">
           <div class="login-field__login">
-            <input type="text" name="login" id="" class="login login-field_input" placeholder="login">
+            <input type="text" name="login" id="" class="login login-field_input" placeholder="login" required>
           </div>
           <div class="login-field__pass">
-            <input type="password" name="password" id="" class="password login-field_input" placeholder="password">
+            <input type="password" name="password" id="" class="password login-field_input" placeholder="password" required>
           </div>
           <div class="login-field__buttons">
             <button class="login-field__cancel-btn login-field_btn">Cancel</button>
@@ -49,17 +50,18 @@ export class LoginField extends BaseComponent {
     this.loginInput = this.element.querySelector('.login');
     this.passInput = this.element.querySelector('.password');
     this.cancelBtn?.addEventListener('click', () => this.element.remove());
-    this.validForm();
+    // this.validForm();
   }
 
-  validForm() {
+  validForm(element: HTMLElement):void {
     this.form?.addEventListener('submit', (e) => {
       e.preventDefault();
       if (this.loginInput?.value === 'admin' && this.passInput?.value === 'admin') {
-        console.log('вошли');
+        store.login = true;
         this.loginInput.value = '';
         this.passInput.value = '';
         this.element.remove();
+        element.style.display = 'none';
       } else {
         new AudioController().failPlay();
         this.loginField?.classList.add('error');
