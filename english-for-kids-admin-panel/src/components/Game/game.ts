@@ -1,4 +1,4 @@
-import { BaseComponent } from '../../assets/Utils/BaseComponent';
+import { BaseComponent } from '../../Utils/BaseComponent';
 import { CategoryCard } from '../CategoryCard/CategoryCard';
 import { CategoryField } from '../CategoryField/CategoryField';
 import { GameField } from '../GameField/GameField';
@@ -6,21 +6,21 @@ import { Header } from '../Header/Header';
 import { Navigation } from '../Navigation/Navigation';
 import store from '../store';
 import { Overlay } from '../Overlay/Overlay';
-import { AudioController } from '../../assets/Utils/AudioController';
+import { AudioController } from '../../Utils/AudioController';
 import cardsObj from '../../cards';
 import { SuccessPoint } from '../Point/Point';
 import { LoosePage } from '../LoosePage/LoosePage';
 import { WinnerPage } from '../WinnerPage/WinnerPage';
 import { GameCard } from '../GameCard/GameCard';
 import { ICards } from '../Icards';
-import { addPoint } from '../../assets/Utils/AddPoint';
+import { addPoint } from '../../Utils/AddPoint';
 import { Score } from '../Stats/Stats';
 import { Footer } from '../Footer/Footer';
 // eslint-disable-next-line import/no-cycle
 import { LoginField } from '../LoginField/LoginField';
-import { AdminPageRender } from '../../../Admin page/AdminPageRender/AdminPageRender';
-import { AdminHeader } from '../../../Admin page/AdminHeader/AdminHeader';
-import { AdminField } from '../../../Admin page/AdminField/AdminField';
+// import { AdminPageRender } from '../../../Admin page/AdminPageRender/AdminPageRender';
+import { AdminHeader } from '../../Admin page/AdminHeader/AdminHeader';
+import { AdminField } from '../../Admin page/AdminField/AdminField';
 
 export class Game extends BaseComponent {
   private readonly categoryFields: CategoryField;
@@ -43,7 +43,7 @@ export class Game extends BaseComponent {
 
   private word: string | undefined;
 
-  adminHeader: AdminHeader;
+  // adminHeader: AdminHeader;
 
   // adminPageRender : AdminPageRender;
   adminField: AdminField;
@@ -64,11 +64,8 @@ export class Game extends BaseComponent {
     this.audioController = new AudioController();
     document.body.append(this.overlay.element);
     this.toggleMenu();
-
-    this.adminHeader = new AdminHeader(this.element);
-    this.adminField = new AdminField();
-    this.renderAdminPage();
-    // this.adminPageRender = new AdminPageRender();
+    this.adminField = new AdminField(this.element);
+    // this.renderAdminPage();
   }
 
   renderGame(images: string[]): void {
@@ -151,11 +148,10 @@ export class Game extends BaseComponent {
           this.element.appendChild(this.statistic.element);
         } else if (item.textContent === 'login') {
           this.element.appendChild(this.loginField.element);
-          this.loginField.validForm(this.element);
+          this.validateAdminPage();
           this.loginField.overlay.element.addEventListener('click', () => {
             this.loginField.element.remove();
           });
-          this.renderAdminPage();
         } else {
           this.clearFields();
           this.gameField.renderGameCards(item.textContent as string);
@@ -165,9 +161,33 @@ export class Game extends BaseComponent {
     });
   }
 
+  validateAdminPage():void {
+    this.loginField.form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (this.loginField.loginInput?.value === 'admin' && this.loginField.passInput?.value === 'admin') {
+        store.login = true;
+        this.loginField.loginInput.value = '';
+        this.loginField.passInput.value = '';
+        this.loginField.element.remove();
+        this.element.style.display = 'none';
+        this.renderAdminPage();
+        return;
+      }
+      if (this.loginField.loginField) {
+        this.audioController.failPlay();
+        setTimeout(() => {
+          if (!this.loginField.loginField) {
+            throw Error();
+          }
+          this.loginField.loginField.classList.remove('error');
+        }, 400);
+      }
+    });
+  }
+
   renderAdminPage(): void {
-    this.footer.element.style.position = 'relative';
-    document.body.appendChild(this.adminHeader.element);
+    this.footer.element.style.display = 'none';
+    // document.body.appendChild(this.adminHeader.element);
     document.body.appendChild(this.adminField.element);
   }
 

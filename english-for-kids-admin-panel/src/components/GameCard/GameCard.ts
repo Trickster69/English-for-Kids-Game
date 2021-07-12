@@ -1,7 +1,7 @@
 import './Game.Card.scss';
-import { AudioController } from '../../assets/Utils/AudioController';
-import { BaseComponent } from '../../assets/Utils/BaseComponent';
-import { addPoint } from '../../assets/Utils/AddPoint';
+import { AudioController } from '../../Utils/AudioController';
+import { BaseComponent } from '../../Utils/BaseComponent';
+import { addPoint } from '../../Utils/AddPoint';
 import store from '../store';
 
 export class GameCard extends BaseComponent {

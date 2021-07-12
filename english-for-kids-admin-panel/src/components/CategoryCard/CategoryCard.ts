@@ -1,5 +1,5 @@
-import { AudioController } from '../../assets/Utils/AudioController';
-import { BaseComponent } from '../../assets/Utils/BaseComponent';
+import { AudioController } from '../../Utils/AudioController';
+import { BaseComponent } from '../../Utils/BaseComponent';
 import store from '../store';
 import './CategoryCard.scss';
 

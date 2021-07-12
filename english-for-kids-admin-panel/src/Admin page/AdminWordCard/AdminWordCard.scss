@@ -110,20 +110,52 @@ $border: polygon(
   );
 /*    WORD CARD   */
 /*Main page card*/
-.admin-word-card__main-card {
-  // display: none;
-}
-.admin-word-card {
+.admin-word-card__main-card, .admin-word-card__change-card {
+  backface-visibility: hidden;
+  position: absolute;
+  padding: 20px 0px 0px 20px;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
   clip-path: $border;
+}
+.admin-word-card__main-card {
+  transform: perspective(600px) rotateY(0deg);
+  background-color: #00805c82;
+}
+
+.admin-word-card__change-card {
+  transform: perspective(600px) rotateY(180deg);
+  background-color: #7d818082;
+  background: linear-gradient(rgba(135, 60, 255, 0.4), rgba(135, 60, 255, 0.0) 33%), linear-gradient(
+-45deg
+, rgba(120, 155, 255, 0.4) 25%, rgba(255, 160, 65, 0.5) 207%);
+}
+
+.flipped-front {
+  transform: perspective(600px) rotateY(-180deg);
+}
+
+.flipped-back {
+  transform: perspective(600px) rotateY(0deg);
+}
+
+
+.admin-word-card {
   width: 310px;
   height: 410px;
-  background-color: #00805c82;
+  // background-color: #00805c82;
   position: relative;
-  padding: 20px 0px 0px 20px;
+  // padding: 20px 0px 0px 20px;
 }
 
 .word_normal-text {
   font-weight: normal;
+  transition: 0.2s;
+}
+.word_normal-text:hover {
+  color: wheat;
+  cursor: pointer;
 }
 
 .word_bold-text {
@@ -137,13 +169,18 @@ $border: polygon(
   height: 206px;
   margin: 0 auto;
   overflow: hidden;
+  position: relative;
 }
 
 .admin-word-car__image img {
   width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.admin-word-car__image__change-btn {
+.admin-word-car__change-btn {
   height: 34px;
   cursor: pointer;
   outline: none;
@@ -158,20 +195,18 @@ $border: polygon(
   clip-path: $border;
   transition: 0.2s;
 }
-.admin-word-car__image__change-btn:hover {
+.admin-word-car__change-btn:hover {
   background-color: #ff9c07;
 }
 /*Main page card*/
 
 /*Change page CArd*/
-.admin-word-card__change-card {
-  display: none;
-}
+
 .input_new-word {
   font-family: 'Countryhouse';
   height: 32px;
   width: 82%;
-  color: ghostwhite;
+  color: #0A4080;
   outline: none;
   margin-top: 38px;
   font-size: 21px;
@@ -214,15 +249,18 @@ $border: polygon(
 }
 
 .submit_change-word {
-  background-color: #aaf74dbf;
+  background-color: #55bda0;
 }
 
 .cancel_change-word {
   background-color: #fa4923d6;
+  position: absolute;
+  bottom: 31px;
+  right: 40px;
 }
 
 .submit_change-word:hover {
-  background-color: #1cf81c;
+  background-color: #43d8ae;
 }
 
 .cancel_change-word:hover {
@@ -241,9 +279,9 @@ $border: polygon(
 }
 .custom-file-input::before {
   display: inline-block;
-  background-color: #E0B851;
+  background-color: #3f51b5a1;
   margin-right: 20px;
-  color: #554362;
+  color: #ffffff;
   font-family: 'Countryhouse';
   padding: 5px 4px;
   outline: none;

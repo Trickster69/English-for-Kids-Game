@@ -3,11 +3,9 @@
   height: 327px;
   align-items: center;
   border-radius: 18px 18px 18px 18px;
-  // border: 2px solid #99c1da;
   transition: 0.4s;
   position: relative;
   cursor: pointer;
-  // transform-style: preserve-3d;
   clip-path: polygon(
     3% 0,
     7% 1%,
@@ -130,7 +128,6 @@
   height: 287px;
 }
 .game-card__back {
-  // display: none;
   transform: perspective(600px) rotateY(180deg);
 }
 .game-card__front {

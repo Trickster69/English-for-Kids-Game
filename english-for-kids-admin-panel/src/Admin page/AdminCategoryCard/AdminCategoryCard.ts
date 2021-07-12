@@ -1,4 +1,4 @@
-import { BaseComponent } from '../../src/assets/Utils/BaseComponent';
+import { BaseComponent } from '../../Utils/BaseComponent';
 import './AdminCategoryCard.scss';
 
 export class AdminCategoryCard extends BaseComponent {

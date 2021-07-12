@@ -1,4 +1,4 @@
-import { BaseComponent } from '../../assets/Utils/BaseComponent';
+import { BaseComponent } from '../../Utils/BaseComponent';
 import { OverlayResult } from '../OverlayResult/OverlayResult';
 import store from '../store';
 import './LoosePage.scss';

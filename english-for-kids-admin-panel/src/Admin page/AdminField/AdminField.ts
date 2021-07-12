@@ -1,5 +1,7 @@
-import { BaseComponent } from '../../src/assets/Utils/BaseComponent';
+import store from '../../components/store';
+import { BaseComponent } from '../../Utils/BaseComponent';
 import { AdminCategoryCard } from '../AdminCategoryCard/AdminCategoryCard';
+import { AdminHeader } from '../AdminHeader/AdminHeader';
 import { AdminWordCard } from '../AdminWordCard/AdminWordCard';
 import './AdminField.scss';
 
@@ -20,23 +22,44 @@ export class AdminField extends BaseComponent {
 
   newWordCard: HTMLDivElement;
 
+  readonly adminHeader: AdminHeader;
+
+  adminCategoryField: HTMLDivElement;
+
   // localItems: string[];
 
   // localCategories: string[];
 
-  constructor() {
-    super('div', ['admin-category-field']);
+  constructor(element: HTMLElement) {
+    super('div', ['admin-field']);
+    this.adminCategoryField = document.createElement('div');
+    this.adminCategoryField.classList.add('admin-category-field');
+    this.adminHeader = new AdminHeader(this.element);
+    this.adminHeader.logoutClick(element, this.element);
+    this.element.append(this.adminHeader.element);
+    this.element.appendChild(this.adminCategoryField);
+
     // this.categoryCard = new AdminCategoryCard();
     this.categoryBtn = document.createElement('div');
     this.newCategoryCard = document.createElement('div');
     this.newWordCard = document.createElement('div');
-
     this.getCategoryWords();
+    this.changeAdminPage();
+    // this.adminCategoryField.appendChild(this.categoryCard.element);
+    this.renderCategoryCard();
+    // this.renderWordsCard(store.adminCategory);
+  }
 
-    this.element.appendChild(this.getCategoryBtn());
-    // this.element.appendChild(this.categoryCard.element);
-    // this.renderCategoryCard();
-    this.renderWordsCard('clothing');
+  changeAdminPage():void {
+    this.adminHeader.wordsBtn.addEventListener('click', () => {
+      this.clearField();
+      this.renderWordsCard(store.adminCategory);
+    });
+
+    this.adminHeader.categoriesBtn.addEventListener('click', () => {
+      this.clearField();
+      this.renderCategoryCard();
+    });
   }
 
   renderCategoryCard() {
@@ -44,40 +67,34 @@ export class AdminField extends BaseComponent {
     const arrCount = Object.entries(this.countCategoryWord);
     arrCount.forEach((key) => {
       const [word, count] = key;
-      this.element.appendChild(new AdminCategoryCard(word, count as number).element);
+      this.adminCategoryField.appendChild(new AdminCategoryCard(word, count as number).element);
     });
-    this.element.appendChild(this.getNewCategoryCard());
-    // this.categoryWords.forEach((key) => {
-    //   this.element.appendChild(new AdminCategoryCard(key, 8).element);
-    // });
-    console.log(this.categoryCards);
+    this.adminCategoryField.appendChild(this.getNewCategoryCard());
   }
 
-  // eslint-disable-next-line class-methods-use-this
   renderWordsCard(category:string):void {
+    this.adminCategoryField.innerHTML = '';
     const localItems = Object.keys(localStorage);
-    // const arr = [];
     localItems.forEach((key) => {
       const storageItem = localStorage.getItem(key);
       if (storageItem) {
         if (JSON.parse(storageItem).category === category) {
           const storageObj = JSON.parse(storageItem);
-          console.log(storageObj);
-          this.element.appendChild(new AdminWordCard(storageObj.word, storageObj.translation, storageObj.word, category).element);
+          this.adminCategoryField.appendChild(new AdminWordCard(storageObj.word, storageObj.translation, storageObj.word.toLowerCase(), category).element);
         }
       }
-      // localStorage.getItem(key);
-      // console.log(localStorage.getItem(key));
     });
-    this.element.appendChild(this.getNewWordCard());
+    this.adminCategoryField.appendChild(this.getCategoryBtn());
+    this.adminCategoryField.appendChild(this.getNewWordCard());
   }
 
   clearField() {
-    this.element.innerHTML = '';
+    this.adminCategoryField.innerHTML = '';
   }
 
   getCategoryBtn(): HTMLDivElement {
     this.categoryBtn.classList.add('select-category-word');
+    this.categoryBtn.innerHTML = '';
     const selectCategoryBtn = document.createElement('button');
     selectCategoryBtn.textContent = 'Category';
     selectCategoryBtn.classList.add('select-category-word__menu-btn');
@@ -86,7 +103,16 @@ export class AdminField extends BaseComponent {
     categoryItems.classList.add('select-category-word__items');
     this.categoryBtn.appendChild(categoryItems);
     this.categoryWords.forEach(((category) => {
-      categoryItems.innerHTML += `<div>${category}</div>`;
+      const categoryDiv = document.createElement('div');
+      categoryDiv.classList.add(`${category}`);
+      categoryDiv.innerHTML = `${category}`;
+      categoryItems.append(categoryDiv);
+      categoryDiv.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        store.adminCategory = target.innerText;
+        this.adminCategoryField.innerHTML = '';
+        this.renderWordsCard(store.adminCategory);
+      });
     }));
     return this.categoryBtn;
   }
@@ -96,10 +122,13 @@ export class AdminField extends BaseComponent {
     this.newCategoryCard.innerHTML = `
       <div title = "Create new Category
       " class="admin-new-card__button">
-        <div class="admin-new-card__title">Create new Category</div>
       </div>
       `;
     return this.newCategoryCard;
+  }
+
+  removeAdminpage() {
+    this.element.remove();
   }
 
   getNewWordCard(): HTMLDivElement {
@@ -107,7 +136,6 @@ export class AdminField extends BaseComponent {
     this.newWordCard.innerHTML = `
     <div title = "Add new word
     " class="admin-new-card__button new_circle">
-    <div class="admin-new-card__title">Add new word</div>
     </div>
     `;
     return this.newWordCard;

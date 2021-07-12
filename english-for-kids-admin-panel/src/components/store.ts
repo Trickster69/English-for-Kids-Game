@@ -8,4 +8,5 @@ export default {
   wrongAnswers: 0 as number,
   startGame: false as boolean,
   login: false,
+  adminCategory: 'animals' as string,
 };

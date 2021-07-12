@@ -1,5 +1,6 @@
-import { AudioController } from '../../assets/Utils/AudioController';
-import { BaseComponent } from '../../assets/Utils/BaseComponent';
+import { AdminHeader } from '../../Admin page/AdminHeader/AdminHeader';
+import { AudioController } from '../../Utils/AudioController';
+import { BaseComponent } from '../../Utils/BaseComponent';
 import { OverlayResult } from '../OverlayResult/OverlayResult';
 import store from '../store';
 import './LoginField.scss';

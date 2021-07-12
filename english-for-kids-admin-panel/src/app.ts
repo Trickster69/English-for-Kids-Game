@@ -1,4 +1,4 @@
-import { addLocalSorage } from './assets/Utils/addLocalStorage';
+import { addLocalSorage } from './Utils/addLocalStorage';
 import cards from './cards';
 import { Game } from './components/Game/game';
 import { ICards } from './components/Icards';
