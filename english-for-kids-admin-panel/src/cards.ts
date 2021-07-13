@@ -70,9 +70,9 @@ const cards: [string[], ...ICards[][]] = [
     },
     {
       category: 'animals2',
-      word: 'Duck',
-      translation: 'Утка',
-      audioSrc: 'duck.mp3',
+      word: 'Zebra',
+      translation: 'Зебра',
+      audioSrc: 'zebra.mp3',
     },
     {
       category: 'animals2',

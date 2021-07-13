@@ -8,6 +8,8 @@ export class AdminWordCard extends BaseComponent {
 
   audioShowWord: HTMLElement | null;
 
+  removeWordBtn: NodeListOf<Element>;
+
   constructor(word:string, translation:string, sound:string, category:string) {
     super('div', ['admin-word-card']);
     this.element.innerHTML = `
@@ -48,9 +50,7 @@ export class AdminWordCard extends BaseComponent {
       </form>
       <button class="change-word_btn cancel_change-word">Cancel</button>
     </div>`;
-    this.flipToBackSide();
-    this.cancelChangeCard();
-    this.submitChangeCard();
+    this.removeWordBtn = this.element.querySelectorAll('.admin-word-card__close-btn');
     this.mainSideCard = this.element.querySelector('.admin-word-card__main-card');
     this.changeSideCard = this.element.querySelector('.admin-word-card__change-card');
     this.audioShowWord = this.element.querySelector('.new-word_word_sound');
@@ -59,16 +59,30 @@ export class AdminWordCard extends BaseComponent {
         new Audio(`https://wooordhunt.ru/data/sound/sow/us/${sound}.mp3`).play();
       }
     });
+    this.removeWordCard();
+    this.changeBtnFlipped();
+    this.cancelChangeCard();
+    this.submitChangeCard();
+  }
+
+  removeWordCard():void {
+    this.removeWordBtn?.forEach((element) => {
+      element.addEventListener('click', () => {
+        this.element.remove();
+      });
+    });
+  }
+
+  changeBtnFlipped(): void {
+    const changeBtn = this.element.querySelector('.admin-word-car__change-btn');
+    changeBtn?.addEventListener('click', () => {
+      this.flipToBackSide();
+    });
   }
 
   flipToBackSide():void {
-    const changeBtn = this.element.querySelector('.admin-word-car__change-btn');
-    changeBtn?.addEventListener('click', () => {
-      if (this.mainSideCard && this.changeSideCard) {
-        this.mainSideCard.classList.add('flipped-front');
-        this.changeSideCard.classList.add('flipped-back');
-      }
-    });
+    this.mainSideCard?.classList.add('flipped-front');
+    this.changeSideCard?.classList.add('flipped-back');
   }
 
   flipToMainSide(): void {
@@ -114,25 +128,11 @@ export class AdminWordCard extends BaseComponent {
 
     const wordShowSide: HTMLElement | null = this.element.querySelector('.new-word_word');
     const translateShowSide: HTMLElement | null = this.element.querySelector('.new-word_translation');
-    const imageShowSide: HTMLImageElement | null = this.element.querySelector('.word-image');
     formChangeWord?.addEventListener('submit', (e) => {
       e.preventDefault();
       if (wordShowSide) wordShowSide.innerHTML = wordChangeInput?.value as string;
       if (translateShowSide) translateShowSide.innerHTML = translateChangeInput?.value as string;
-
-      // const fr = new FileReader();
-
-      // if (imageShowSide) imageShowSide.src = fr.result as any;
-
-      // if (imageShowSide) imageShowSide.src = imageChangeInput?.value as string;
-      // imageShowSide?.setAttribute('src', imageChangeInput?.value as any);
-
-      // this.clearInputs();
       this.flipToMainSide();
     });
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  // eslint-disable-next-line class-methods-use-this
 }

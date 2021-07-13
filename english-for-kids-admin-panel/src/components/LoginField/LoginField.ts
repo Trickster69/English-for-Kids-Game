@@ -27,10 +27,10 @@ export class LoginField extends BaseComponent {
         <div class="login-field__title">Login</div>
         <form class="form">
           <div class="login-field__login">
-            <input type="text" name="login" id="" class="login login-field_input" placeholder="login" required>
+            <input type="text" name="login" class="login login-field_input" placeholder="login" required>
           </div>
           <div class="login-field__pass">
-            <input type="password" name="password" id="" class="password login-field_input" placeholder="password" required>
+            <input type="password" name="password" class="password login-field_input" placeholder="password" required>
           </div>
           <div class="login-field__buttons">
             <button class="login-field__cancel-btn login-field_btn">Cancel</button>

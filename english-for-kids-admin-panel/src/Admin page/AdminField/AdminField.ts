@@ -6,7 +6,7 @@ import { AdminWordCard } from '../AdminWordCard/AdminWordCard';
 import './AdminField.scss';
 
 export class AdminField extends BaseComponent {
-  categoryCards: AdminCategoryCard[] = [];
+  // categoryCards: AdminCategoryCard[] = [];
 
   // categoryCard: AdminCategoryCard;
 
@@ -43,11 +43,30 @@ export class AdminField extends BaseComponent {
     this.categoryBtn = document.createElement('div');
     this.newCategoryCard = document.createElement('div');
     this.newWordCard = document.createElement('div');
-    this.getCategoryWords();
+    // this.getCategoryWords();
     this.changeAdminPage();
     // this.adminCategoryField.appendChild(this.categoryCard.element);
     this.renderCategoryCard();
     // this.renderWordsCard(store.adminCategory);
+
+    this.addNewCategoryCard();
+    this.addNewWordCard();
+  }
+
+  addNewWordCard():void {
+    this.newWordCard.addEventListener('click', () => {
+      const newWord = new AdminWordCard('', '', '', '');
+      newWord.flipToBackSide();
+      this.adminCategoryField.insertBefore(newWord.element, this.newWordCard);
+    });
+  }
+
+  addNewCategoryCard():void {
+    this.newCategoryCard.addEventListener('click', () => {
+      const newCard = new AdminCategoryCard('', 0);
+      newCard.flipToChangeSide();
+      this.adminCategoryField.insertBefore(newCard.element, this.newCategoryCard);
+    });
   }
 
   changeAdminPage():void {
@@ -62,12 +81,21 @@ export class AdminField extends BaseComponent {
     });
   }
 
-  renderCategoryCard() {
+  renderCategoryCard():void {
+    this.clearField();
     this.getCategoryWords();
     const arrCount = Object.entries(this.countCategoryWord);
     arrCount.forEach((key) => {
       const [word, count] = key;
-      this.adminCategoryField.appendChild(new AdminCategoryCard(word, count as number).element);
+      const newCategoryCard = new AdminCategoryCard(word, count as number);
+      this.adminCategoryField.appendChild(newCategoryCard.element);
+      newCategoryCard.addWordBtn?.addEventListener('click', () => {
+        // this.clearField();
+        // this.renderWordsCard(store.adminCategory);
+        const currentCategory = newCategoryCard.element.id;
+        this.clearField();
+        this.renderWordsCard(currentCategory);
+      });
     });
     this.adminCategoryField.appendChild(this.getNewCategoryCard());
   }
@@ -88,7 +116,7 @@ export class AdminField extends BaseComponent {
     this.adminCategoryField.appendChild(this.getNewWordCard());
   }
 
-  clearField() {
+  clearField():void {
     this.adminCategoryField.innerHTML = '';
   }
 
@@ -127,7 +155,7 @@ export class AdminField extends BaseComponent {
     return this.newCategoryCard;
   }
 
-  removeAdminpage() {
+  removeAdminpage():void {
     this.element.remove();
   }
 

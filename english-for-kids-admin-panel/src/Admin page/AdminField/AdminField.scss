@@ -148,13 +148,18 @@ $border: polygon(
   display: inline-block;
 }
 .select-category-word__items {
+  position: absolute;
+  left: -50%;
   display: none;
-  background-color: #2f4080;
+  background-color: #2f4080e8;
+  z-index: 6;
   min-width: 200px;
   clip-path: $border;
 }
 .select-category-word__items div {
   color: white;
+  font-size: 25px;
+  text-align: center;
   font-family: Countryhouse;
   transition: 0.2s;
   cursor: pointer;

@@ -109,19 +109,42 @@ $border: polygon(
     1% 3%
   );
 /*    CATEGORY CARD   */
-.admin-category-card__review-block {
-  display: block;
-}
-.hide_review {
-  display: none;
-}
+
+// .hide_review {
+//   display: none;
+// }
 .admin-category-card {
   // display: none;
   position: relative;
   width: 360px;
   height: 244px;
-  background-color: rgb(103 58 183 / 46%);
+  // background-color: rgb(103 58 183 / 46%);
+  // clip-path: $border;
+}
+.admin-category-card__review-block,.admin-category-card__change-block {
   clip-path: $border;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+  backface-visibility: hidden;
+}
+.admin-category-card__review-block {
+  background-color: #993366c4;
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.admin-category-card__change-block {
+  background-color: #b2dfe0bd;
+  transform: perspective(600px) rotateY(180deg);
+}
+
+.flipped-front {
+  transform: perspective(600px) rotateY(-180deg);
+}
+
+.flipped-back {
+  transform: perspective(600px) rotateY(0deg);
 }
 
 .admin-category-card__title {
@@ -142,6 +165,7 @@ $border: polygon(
   opacity: 0.7;
   cursor: pointer;
   transition: 0.2s;
+  z-index: 5;
 }
 .close-btn_admin:hover {
   opacity: 1;
@@ -153,7 +177,7 @@ $border: polygon(
   content: ' ';
   height: 33px;
   width: 4px;
-  background-color: #585858;
+  background-color: #330066;
 }
 .close-btn_admin:before {
   transform: rotate(45deg);
@@ -166,11 +190,13 @@ $border: polygon(
   text-align: center;
   font-family: 'Countryhouse';
   font-size: 40px;
+  color: #330066;
   margin-top: 10px;
 }
 
 #word-count {
   font-weight: 800;
+  border-bottom: 4px solid #330066;
 }
 
 .admin-category-card__btns {
@@ -187,7 +213,7 @@ $border: polygon(
   padding: 0 10px;
   clip-path: $border;
   font-family: 'Artemon';
-  font-size: 29px;
+  font-size: 35px;
   height: 40px;
   background: none;
   transition: 0.2s;
@@ -197,12 +223,10 @@ $border: polygon(
   transform: scale(1.1);
 }
 
-.admin-category-card__change-block {
-  display: block;
-}
-.hide_change {
-  display: none;
-}
+
+// .hide_change {
+//   display: none;
+// }
 
 .form_create-card {
   position: absolute;

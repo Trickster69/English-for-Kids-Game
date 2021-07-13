@@ -65,7 +65,10 @@ export class Game extends BaseComponent {
     document.body.append(this.overlay.element);
     this.toggleMenu();
     this.adminField = new AdminField(this.element);
-    // this.renderAdminPage();
+
+    /* Удали эти 2 строки для полноценного приложения. */
+    this.renderAdminPage();
+    this.element.style.display = 'none';
   }
 
   renderGame(images: string[]): void {
