@@ -46,7 +46,7 @@ export class Game extends BaseComponent {
   // adminHeader: AdminHeader;
 
   // adminPageRender : AdminPageRender;
-  adminField: AdminField;
+  adminField: AdminField | undefined;
 
   constructor() {
     super();
@@ -64,11 +64,11 @@ export class Game extends BaseComponent {
     this.audioController = new AudioController();
     document.body.append(this.overlay.element);
     this.toggleMenu();
-    this.adminField = new AdminField(this.element);
+    // this.adminField = new AdminField(this.element);
 
     /* Удали эти 2 строки для полноценного приложения. */
-    this.renderAdminPage();
-    this.element.style.display = 'none';
+    // this.renderAdminPage();
+    // this.element.style.display = 'none';
   }
 
   renderGame(images: string[]): void {
@@ -202,6 +202,7 @@ export class Game extends BaseComponent {
   renderAdminPage(): void {
     this.footer.element.style.display = 'none';
     // document.body.appendChild(this.adminHeader.element);
+    this.adminField = new AdminField(this.element);
     document.body.appendChild(this.adminField.element);
   }
 

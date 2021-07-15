@@ -28,6 +28,9 @@ export class AdminField extends BaseComponent {
 
   constructor(element: HTMLElement) {
     super('div', ['admin-field']);
+    this.getCategoryWords();
+    const localItems = Object.keys(localStorage);
+
     this.adminCategoryField = document.createElement('div');
     this.adminCategoryField.classList.add('admin-category-field');
     this.adminHeader = new AdminHeader(this.element);
@@ -160,7 +163,7 @@ export class AdminField extends BaseComponent {
   }
 
   getCategoryWords(): void {
-    const localItems = Object.keys(localStorage);
+     const localItems = Object.keys(localStorage);
     interface IcountObj {
       [index: string]: number;
     }
