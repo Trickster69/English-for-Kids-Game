@@ -106,7 +106,6 @@ export class AdminWordCard extends BaseComponent {
   cancelChangeCard(): void {
     const cancelBtn = this.element.querySelector('.cancel_change-word');
     cancelBtn?.addEventListener('click', () => {
-      // this.clearInputs();
       this.flipToMainSide();
     });
   }

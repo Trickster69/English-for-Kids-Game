@@ -26,10 +26,6 @@ export class AdminField extends BaseComponent {
 
   adminCategoryField: HTMLDivElement;
 
-  // localItems: string[];
-
-  // localCategories: string[];
-
   constructor(element: HTMLElement) {
     super('div', ['admin-field']);
     this.adminCategoryField = document.createElement('div');
@@ -39,15 +35,11 @@ export class AdminField extends BaseComponent {
     this.element.append(this.adminHeader.element);
     this.element.appendChild(this.adminCategoryField);
 
-    // this.categoryCard = new AdminCategoryCard();
     this.categoryBtn = document.createElement('div');
     this.newCategoryCard = document.createElement('div');
     this.newWordCard = document.createElement('div');
-    // this.getCategoryWords();
     this.changeAdminPage();
-    // this.adminCategoryField.appendChild(this.categoryCard.element);
     this.renderCategoryCard();
-    // this.renderWordsCard(store.adminCategory);
 
     this.addNewCategoryCard();
     this.addNewWordCard();
@@ -90,8 +82,6 @@ export class AdminField extends BaseComponent {
       const newCategoryCard = new AdminCategoryCard(word, count as number);
       this.adminCategoryField.appendChild(newCategoryCard.element);
       newCategoryCard.addWordBtn?.addEventListener('click', () => {
-        // this.clearField();
-        // this.renderWordsCard(store.adminCategory);
         const currentCategory = newCategoryCard.element.id;
         this.clearField();
         this.renderWordsCard(currentCategory);
