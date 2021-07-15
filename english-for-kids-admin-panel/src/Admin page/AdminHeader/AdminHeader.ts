@@ -25,7 +25,7 @@ export class AdminHeader extends BaseComponent {
     this.element.appendChild(this.logout);
 
     this.categoriesBtn = document.createElement('div');
-    this.categoriesBtn.classList.add('header-admin__category-btn', 'header-admin_btn');
+    this.categoriesBtn.classList.add('header-admin__category-btn', 'header-admin_btn', 'active');
     this.categoriesBtn.textContent = 'Categories';
     this.wordsBtn = document.createElement('div');
     this.wordsBtn.classList.add('header-admin__words-btn', 'header-admin_btn');

@@ -64,9 +64,8 @@ export class Game extends BaseComponent {
     this.audioController = new AudioController();
     document.body.append(this.overlay.element);
     this.toggleMenu();
-    // this.adminField = new AdminField(this.element);
 
-    /* Удали эти 2 строки для полноценного приложения. */
+    /* Test AdminPage */
     // this.renderAdminPage();
     // this.element.style.display = 'none';
   }
@@ -201,7 +200,6 @@ export class Game extends BaseComponent {
 
   renderAdminPage(): void {
     this.footer.element.style.display = 'none';
-    // document.body.appendChild(this.adminHeader.element);
     this.adminField = new AdminField(this.element);
     document.body.appendChild(this.adminField.element);
   }

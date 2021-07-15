@@ -6,10 +6,6 @@ import { AdminWordCard } from '../AdminWordCard/AdminWordCard';
 import './AdminField.scss';
 
 export class AdminField extends BaseComponent {
-  // categoryCards: AdminCategoryCard[] = [];
-
-  // categoryCard: AdminCategoryCard;
-
   categoryWords: string[] = [];
 
   countCategoryWord = {};
@@ -28,9 +24,6 @@ export class AdminField extends BaseComponent {
 
   constructor(element: HTMLElement) {
     super('div', ['admin-field']);
-    this.getCategoryWords();
-    const localItems = Object.keys(localStorage);
-
     this.adminCategoryField = document.createElement('div');
     this.adminCategoryField.classList.add('admin-category-field');
     this.adminHeader = new AdminHeader(this.element);
@@ -41,6 +34,7 @@ export class AdminField extends BaseComponent {
     this.categoryBtn = document.createElement('div');
     this.newCategoryCard = document.createElement('div');
     this.newWordCard = document.createElement('div');
+    this.getCategoryWords();
     this.changeAdminPage();
     this.renderCategoryCard();
 
@@ -67,13 +61,20 @@ export class AdminField extends BaseComponent {
   changeAdminPage():void {
     this.adminHeader.wordsBtn.addEventListener('click', () => {
       this.clearField();
+      this.setActiveHeaderBtn();
       this.renderWordsCard(store.adminCategory);
     });
 
     this.adminHeader.categoriesBtn.addEventListener('click', () => {
       this.clearField();
+      this.setActiveHeaderBtn();
       this.renderCategoryCard();
     });
+  }
+
+  setActiveHeaderBtn():void {
+    this.adminHeader.categoriesBtn.classList.toggle('active');
+    this.adminHeader.wordsBtn.classList.toggle('active');
   }
 
   renderCategoryCard():void {
@@ -88,6 +89,7 @@ export class AdminField extends BaseComponent {
         const currentCategory = newCategoryCard.element.id;
         this.clearField();
         this.renderWordsCard(currentCategory);
+        this.setActiveHeaderBtn();
       });
     });
     this.adminCategoryField.appendChild(this.getNewCategoryCard());
