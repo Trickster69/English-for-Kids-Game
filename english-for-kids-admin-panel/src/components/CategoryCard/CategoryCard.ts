@@ -1,7 +1,7 @@
 import { AudioController } from '../../Utils/AudioController';
 import { BaseComponent } from '../../Utils/BaseComponent';
-import store from '../store';
 import './CategoryCard.scss';
+import { audioToElement } from '../../Utils/addAudio';
 
 export class CategoryCard extends BaseComponent {
   categoryCard: HTMLDivElement;
@@ -18,8 +18,6 @@ export class CategoryCard extends BaseComponent {
     this.categoryCard.classList.add('card__category');
     this.categoryCard.textContent = `${image}`;
     this.element.appendChild(this.categoryCard);
-
-    this.element.addEventListener('mouseenter', () => new AudioController().mouseEnterCar());
-    this.element.addEventListener('click', () => new AudioController().clickTOCard());
+    audioToElement(this.element);
   }
 }

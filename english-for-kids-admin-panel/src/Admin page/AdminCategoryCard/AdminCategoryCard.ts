@@ -1,5 +1,6 @@
 import { BaseComponent } from '../../Utils/BaseComponent';
 import './AdminCategoryCard.scss';
+import { audioToElement } from '../../Utils/addAudio';
 
 export class AdminCategoryCard extends BaseComponent {
   removeCategoryCard: NodeListOf<Element>;
@@ -50,6 +51,7 @@ export class AdminCategoryCard extends BaseComponent {
     this.changeCard();
     this.clickToCancel();
     this.changeCategory();
+    audioToElement(this.element);
   }
 
   flipToChangeSide():void {

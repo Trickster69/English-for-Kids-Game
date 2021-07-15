@@ -1,5 +1,6 @@
 import { BaseComponent } from '../../Utils/BaseComponent';
 import './AdminWordCard.scss';
+import { audioToElement } from '../../Utils/addAudio';
 
 export class AdminWordCard extends BaseComponent {
   mainSideCard: HTMLElement | null;
@@ -59,6 +60,7 @@ export class AdminWordCard extends BaseComponent {
         new Audio(`https://wooordhunt.ru/data/sound/sow/us/${sound}.mp3`).play();
       }
     });
+    audioToElement(this.element);
     this.removeWordCard();
     this.changeBtnFlipped();
     this.cancelChangeCard();
