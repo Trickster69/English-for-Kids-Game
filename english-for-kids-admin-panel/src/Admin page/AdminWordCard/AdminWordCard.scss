@@ -110,6 +110,7 @@ $border: polygon(
   );
 /*    WORD CARD   */
 /*Main page card*/
+
 .admin-word-card__main-card, .admin-word-card__change-card {
   backface-visibility: hidden;
   position: absolute;
@@ -144,9 +145,13 @@ $border: polygon(
 .admin-word-card {
   width: 310px;
   height: 410px;
-  // background-color: #00805c82;
   position: relative;
-  // padding: 20px 0px 0px 20px;
+  transition: 0.2s;
+}
+
+.admin-word-card:hover {
+  cursor: pointer;
+  transform: scale(1.02);
 }
 
 .word_normal-text {

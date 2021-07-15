@@ -72,4 +72,13 @@ export class LoginField extends BaseComponent {
       }
     });
   }
+
+  clearLoginForm() {
+    const allInputs = this.element.querySelectorAll('input');
+    allInputs.forEach((input) => {
+      if (!input.classList.contains('login-field__login-btn')) {
+        input.value = '';
+      }
+    });
+  }
 }

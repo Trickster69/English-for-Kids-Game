@@ -151,7 +151,7 @@ export class Game extends BaseComponent {
           this.element.appendChild(this.statistic.element);
         } else if (item.textContent === 'login') {
           this.element.appendChild(this.loginField.element);
-          this.validateAdminPage();
+          this.validateAdminPage(cards);
           this.loginField.overlay.element.addEventListener('click', () => {
             this.loginField.element.remove();
           });
@@ -164,7 +164,7 @@ export class Game extends BaseComponent {
     });
   }
 
-  validateAdminPage():void {
+  validateAdminPage(cards:CategoryCard[]):void {
     this.loginField.form?.addEventListener('submit', (e) => {
       e.preventDefault();
       if (this.loginField.loginInput?.value === 'admin' && this.loginField.passInput?.value === 'admin') {
@@ -174,17 +174,28 @@ export class Game extends BaseComponent {
         this.loginField.element.remove();
         this.element.style.display = 'none';
         this.renderAdminPage();
-        return;
+        this.audioController.successPlay();
       }
       if (this.loginField.loginField) {
-        this.audioController.failPlay();
-        setTimeout(() => {
-          if (!this.loginField.loginField) {
-            throw Error();
+        this.loginField.loginField.classList.add('error');
+        this.loginField.clearLoginForm();
+        return new Promise<void>((resolve) => {
+          setTimeout(() => {
+            if (this.loginField.loginField) {
+              this.loginField.loginField.classList.remove('error');
+            }
+            resolve();
+          }, 400);
+        }).then(() => {
+          if (this.loginField.loginField) {
+            this.clearFields();
+            this.categoryFields.addCategoryCards(cards);
+            this.element.appendChild(this.categoryFields.element);
+            this.loginField.element.remove();
           }
-          this.loginField.loginField.classList.remove('error');
-        }, 400);
+        });
       }
+      return this.loginField;
     });
   }
 

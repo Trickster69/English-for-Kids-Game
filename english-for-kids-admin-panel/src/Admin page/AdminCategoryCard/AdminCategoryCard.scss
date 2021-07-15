@@ -120,6 +120,12 @@ $border: polygon(
   height: 244px;
   // background-color: rgb(103 58 183 / 46%);
   // clip-path: $border;
+  transition: 0.2s;
+}
+
+.admin-category-card:hover {
+  cursor: pointer;
+  transform: scale(1.02);
 }
 .admin-category-card__review-block,.admin-category-card__change-block {
   clip-path: $border;
