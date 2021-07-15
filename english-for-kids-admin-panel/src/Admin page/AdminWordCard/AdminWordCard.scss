@@ -144,7 +144,7 @@ $border: polygon(
 
 .admin-word-card {
   width: 310px;
-  height: 460px;
+  height: 433px;
   position: relative;
   transition: 0.2s;
 }
@@ -257,7 +257,7 @@ $border: polygon(
 .submit_change-word {
   background-color: #55bda0;
   position: relative;
-  top: 40px;
+  top: 14px;
 }
 
 .cancel_change-word {
@@ -304,7 +304,15 @@ $border: polygon(
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 audio {
-  width: 95%;
+  width: 75%;
+  height: 26px;
   position: relative;
   left: -10px;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #ffc107;
+}
+audio::-webkit-media-controls-mute-button {
+  display: none;
 }
