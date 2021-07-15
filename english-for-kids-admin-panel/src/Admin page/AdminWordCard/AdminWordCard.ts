@@ -23,7 +23,8 @@ export class AdminWordCard extends BaseComponent {
         Translation: <span class="word_normal-text new-word_translation">${translation}</span>
       </div>
       <div class="admin-word-car__sound word_bold-text">
-        Sound file: <span class="word_normal-text new-word_word_sound">${sound}.mp3</span>
+        Sound file:
+        <audio preload="none" controlsList="nodownload" src="https://wooordhunt.ru/data/sound/sow/us/${sound}.mp3" class="audio_word" controls="false"></audio><br>
       </div>
       <div class="admin-word-car__image-wrapper">
         <div class="admin-word-car__image__title word_bold-text">Image: </div>
@@ -41,11 +42,11 @@ export class AdminWordCard extends BaseComponent {
         <input type="text" name="" placeholder="Translation" class="input_new-word" value="${translation}" required>
         <div class="new_sound">
           <label for="file" class="label">Sound:</label>
-          <input type="file" name="" accept="audio/*"  class="custom-file-input sound-input">
+          <input type="file" name="" accept="audio/*"  class="custom-file-input sound-input input_change-audio">
         </div>
         <div class="new_image">
           <label for="file" class="label">Image:</label>
-          <input type="file" name="" accept="image/*" required class="custom-file-input image-input">
+          <input type="file" name="" accept="image/*" class="custom-file-input image-input">
         </div>
         <input type="submit" value="Submit" class="change-word_btn submit_change-word">
       </form>
@@ -115,9 +116,23 @@ export class AdminWordCard extends BaseComponent {
     const wordChangeInput: HTMLInputElement | null = this.element.querySelector('.new_word-word');
     const translateChangeInput: HTMLInputElement | null = this.element.querySelector('.new_word-translation');
     const imageChangeInput: HTMLInputElement | null = this.element.querySelector('.image-input');
+    const audioChangeInput : HTMLInputElement | null = this.element.querySelector('.input_change-audio');
+    const audio: HTMLAudioElement | null = this.element.querySelector('.audio_word');
+
+    if (audioChangeInput) {
+      audioChangeInput.addEventListener('change', (e:Event) => {
+        const target = e.target as HTMLInputElement;
+        if (audio) {
+          if (!target.files) return;
+          audio.src = URL.createObjectURL(target?.files[0]);
+        }
+      });
+    }
 
     imageChangeInput?.addEventListener('change', (e) => {
-      const selectedFile = (e.target as any).files[0];
+      const target = e.target as HTMLInputElement;
+      if (!target.files) return;
+      const selectedFile = target.files[0];
       const reader = new FileReader();
       const imageShowSide: HTMLImageElement | null = this.element.querySelector('.word-image');
       if (imageShowSide) imageShowSide.title = selectedFile.name;

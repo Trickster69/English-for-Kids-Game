@@ -141,7 +141,9 @@ $border: polygon(
 }
 
 .admin-category-card__change-block {
-  background-color: #b2dfe0bd;
+  background: linear-gradient(rgba(135, 60, 255, 0.4), rgba(135, 60, 255, 0) 33%),linear-gradient(
+-45deg
+ , rgba(120, 155, 255, 0.4) 25%, rgba(255, 160, 65, 0.5) 207%);
   transform: perspective(600px) rotateY(180deg);
 }
 

@@ -144,7 +144,7 @@ $border: polygon(
 
 .admin-word-card {
   width: 310px;
-  height: 410px;
+  height: 460px;
   position: relative;
   transition: 0.2s;
 }
@@ -237,6 +237,7 @@ $border: polygon(
 .new_sound, .new_image {
   font-family: 'Countryhouse';
   font-size: 25px;
+  margin-top: 25px;
 }
 
 .change-word_btn {
@@ -255,6 +256,8 @@ $border: polygon(
 
 .submit_change-word {
   background-color: #55bda0;
+  position: relative;
+  top: 40px;
 }
 
 .cancel_change-word {
@@ -299,4 +302,9 @@ $border: polygon(
 }
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+audio {
+  width: 95%;
+  position: relative;
+  left: -10px;
 }
