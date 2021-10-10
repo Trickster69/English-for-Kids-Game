@@ -4,7 +4,7 @@
 
 ### Deploy link: https://elegant-lovelace-b68f15.netlify.app/
 #
-#### In this project I used technologies such as Webpack, TypeScript, OOP, Local Storage
+#### In this project I used technologies such as Webpack, TypeScript, OOP, Local Storage, SCSS
 #### I also developed the design by myself, from scratch.
 #
 ### Game functionality:
