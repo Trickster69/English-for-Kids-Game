@@ -1,5 +1,6 @@
 # English For Kids
 ## An educational game, the purpose of which is to learn English for elementary school children
+#
 ![Screenshot_2](https://user-images.githubusercontent.com/56273311/136697017-6ecb4fff-0791-4c60-ab8e-c48953b509f7.png)
 
 ### Deploy link: https://elegant-lovelace-b68f15.netlify.app/
@@ -15,5 +16,4 @@
 ###### Voice reproduction of words.
 ###### Ability to sort and reset statistics
 ###### The ability to log in to the admin panel.
-
 #
